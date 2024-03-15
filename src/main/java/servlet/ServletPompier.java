@@ -4,12 +4,17 @@
  */
 package servlet;
 
+import database.DaoPompier;
+import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Connection;
+import java.util.ArrayList;
+import model.Pompier;
 
 /**
  *
@@ -17,6 +22,18 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 public class ServletPompier extends HttpServlet {
 
+     Connection cnx ;
+            
+    @Override
+    public void init()
+    {     
+        ServletContext servletContext=getServletContext();
+        cnx = (Connection)servletContext.getAttribute("connection");     
+    }
+
+    
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -55,7 +72,21 @@ public class ServletPompier extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+         String url = request.getRequestURI();  
+       
+        // Récup et affichage les eleves 
+        if(url.equals("/sdisweb/ServletPompier/lister"))
+        {              
+            ArrayList<Pompier> lesPompiers = DaoPompier.getLesPompiers(cnx);
+            request.setAttribute("pLesPompiers", lesPompiers);
+            //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
+           getServletContext().getRequestDispatcher("/vues/pompier/listerPompiers.jsp").forward(request, response);
+        }
+        
+        
+        
+        
     }
 
     /**
