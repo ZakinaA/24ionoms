@@ -14,6 +14,7 @@ public class Pompier {
     private String bip ;
     private String nom;
     private String prenom ;
+    private Caserne uneCaserne ;
 
     public Pompier() {
     }
@@ -48,6 +49,14 @@ public class Pompier {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public Caserne getUneCaserne() {
+        return uneCaserne;
+    }
+
+    public void setUneCaserne(Caserne uneCaserne) {
+        this.uneCaserne = uneCaserne;
     }
     
     
