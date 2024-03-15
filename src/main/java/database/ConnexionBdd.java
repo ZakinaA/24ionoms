@@ -31,7 +31,7 @@ public class ConnexionBdd {
         }     
         try {
             //obtention de la connexion
-            connection= DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3307/poudlard23","root","");
+            connection= DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3307/sdis","root","");
             System.out.println("Connexion OK");
            
         } catch (SQLException e) {
