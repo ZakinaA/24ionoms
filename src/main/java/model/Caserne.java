@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author zakina
@@ -12,6 +14,7 @@ public class Caserne {
     
     private int id;
     private String nom ;
+    private ArrayList<Pompier> lesPompiers ;
 
     public Caserne() {
     }
@@ -31,7 +34,20 @@ public class Caserne {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+    public ArrayList<Pompier> getLesPompiers() {
+        return lesPompiers;
+    }
+
+    public void setLesPompiers(ArrayList<Pompier> lesPompiers) {
+        this.lesPompiers = lesPompiers;
+    }
     
-    
+    public void addPompier(Pompier p){
+        if (lesPompiers == null){
+            lesPompiers = new ArrayList<Pompier>();
+        }
+        lesPompiers.add(p);
+    }
     
 }
