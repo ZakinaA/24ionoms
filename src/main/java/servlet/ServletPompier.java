@@ -135,8 +135,17 @@ public class ServletPompier extends HttpServlet {
         request.setAttribute( "pPompier", p );
 		
         if (form.getErreurs().isEmpty()){
-            // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
-            this.getServletContext().getRequestDispatcher("/vues/pompier/consulterPompier.jsp" ).forward( request, response );
+            Pompier pompierInsere =  DaoPompier.addPompier(cnx, p);
+            if (pompierInsere != null ){
+                request.setAttribute( "pPompier", pompierInsere );
+                this.getServletContext().getRequestDispatcher("/vues/pompier/consulterPompier.jsp" ).forward( request, response );
+            }
+            else 
+            {
+                // Cas oùl'insertion en bdd a échoué
+                //renvoyer vers une page d'erreur 
+            }
+           
         }
         else
         { 

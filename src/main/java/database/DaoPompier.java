@@ -111,6 +111,8 @@ public class DaoPompier {
             while ( resultatRequete.next() ) {
                 idGenere = resultatRequete.getInt( 1 );
                 p.setId(idGenere);
+                
+                p = DaoPompier.getPompierById(connection, p.getId());
             }
             
          
