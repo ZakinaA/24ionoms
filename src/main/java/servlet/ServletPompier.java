@@ -97,17 +97,12 @@ public class ServletPompier extends HttpServlet {
            
            
         }
-        /*
-         if(url.equals("/equida/ServletClient/ajouterClient"))
+        
+        if(url.equals("/sdisweb/ServletPompier/ajouter"))
         {                   
-            ArrayList<Pays> lesPays = PaysDAO.getLesPays(connection);
-            request.setAttribute("pLesPays", lesPays);
-            
-            ArrayList<CategVente> lesCategVentes = CategVenteDAO.getLesCategVentes(connection);
-            request.setAttribute("pLesCategVente", lesCategVentes);
-            this.getServletContext().getRequestDispatcher("/vues/client/ajouterClient.jsp" ).forward( request, response );
+           this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterPompier.jsp" ).forward( request, response );
         }
-        */
+        
         
         
         

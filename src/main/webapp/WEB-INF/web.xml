@@ -13,9 +13,13 @@
         <servlet-name>ServletPompier</servlet-name>
         <url-pattern>/ServletPompier/lister</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletPompier</servlet-name>
         <url-pattern>/ServletPompier/consulter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletPompier</servlet-name>
+        <url-pattern>/ServletPompier/ajouter</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
