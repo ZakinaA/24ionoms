@@ -54,4 +54,38 @@ public class DaoPompier {
         return lesPompiers;
     }
     
+    public static Pompier getPompierById(Connection cnx, int idPompier){
+        
+        Pompier p = null ;
+        try{
+            requeteSql = cnx.prepareStatement("select pompier.id as p_id, pompier.nom as p_nom, pompier.prenom as p_prenom, c.id as c_id, c.nom as c_nom " +
+                         " from pompier inner join caserne c " +
+                         " on pompier.caserne_id = c.id "+
+                         " where pompier.id= ? ");
+            requeteSql.setInt(1, idPompier);
+            resultatRequete = requeteSql.executeQuery();
+            
+            if (resultatRequete.next()){
+                
+                    p = new Pompier();
+                    p.setId(resultatRequete.getInt("p_id"));
+                    p.setNom(resultatRequete.getString("p_nom"));
+                    p.setPrenom(resultatRequete.getString("p_prenom"));
+                Caserne c = new Caserne();
+                    c.setId(resultatRequete.getInt("c_id"));
+                    c.setNom(resultatRequete.getString("c_nom"));
+                
+                p.setUneCaserne(c);
+                
+                
+            }
+           
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("La requête de getPompierById  a généré une erreur");
+        }
+        return p ;
+    }
+    
 }

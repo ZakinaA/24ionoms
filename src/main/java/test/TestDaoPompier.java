@@ -19,6 +19,7 @@ public class TestDaoPompier {
         Connection cnx = ConnexionBdd.ouvrirConnexion();
         System.out.println ("nombre de pomipiers=" + DaoPompier.getLesPompiers(cnx).size());
         
+        System.out.println ("Le pompier 1 s'appelle =" + DaoPompier.getPompierById(cnx,1).getNom());
         
     }
     
