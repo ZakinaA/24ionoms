@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Caserne"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,5 +15,35 @@
     </head>
     <body>
         <h1>NOUVEAU POMPIER</h1>
+        
+        <form class="form-inline" action="ajouter" method="POST">
+                <label for="nom">NOM : </label>
+                <input id="nom" type="text" name="nom"  size="30" maxlength="30">
+                </br>
+                
+                <label for="prenom">PRENOM : </label>
+                <input id="prenom"  type="text"  name="prenom" size="30" maxlength="30">      
+                 </br>
+               
+                
+                <%-- Champ Liste des caserbes --%>
+                <label for="pays">Caserne : </label>
+                <select name="codePays">
+                    <%
+                        ArrayList<Caserne> lesCasernes= (ArrayList)request.getAttribute("pLesCasernes");
+                        for (int i=0; i<lesCasernes.size();i++){
+                            Caserne c = lesCasernes.get(i);
+                            out.println("<option value='" + c.getId()+"'>" + c.getNom()+"</option>" );
+                        }
+                    %>
+                </select>
+                </br>            
+                               
+            <input type="submit" name="valider" id="valider" value="Valider"/>
+            </form>
+        
+        
+        
+        
     </body>
 </html>

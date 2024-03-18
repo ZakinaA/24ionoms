@@ -4,6 +4,7 @@
  */
 package servlet;
 
+import database.DaoCaserne;
 import database.DaoPompier;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.util.ArrayList;
+import model.Caserne;
 import model.Pompier;
 
 /**
@@ -100,7 +102,9 @@ public class ServletPompier extends HttpServlet {
         
         if(url.equals("/sdisweb/ServletPompier/ajouter"))
         {                   
-           this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterPompier.jsp" ).forward( request, response );
+            ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
+            request.setAttribute("pLesCasernes", lesCasernes);
+            this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterPompier.jsp" ).forward( request, response );
         }
         
         
