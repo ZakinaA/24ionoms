@@ -91,9 +91,10 @@ public class ServletPompier extends HttpServlet {
             // Il est donc nécessaire de caster le paramètre idPompier en int
             int idPompier = Integer.parseInt((String)request.getParameter("idPompier"));
             System.out.println( "pompier à afficher = " + idPompier);
+            Pompier p= DaoPompier.getPompierById(cnx, idPompier);
+            request.setAttribute("pPompier", p);
             getServletContext().getRequestDispatcher("/vues/pompier/consulterPompier.jsp").forward(request, response);       
-            /*ArrayList<Client> lesClients = ClientDAO.getLesClients(connection, codeCat);
-            request.setAttribute("pLesClients", lesClients);*/
+           
            
         }
         /*
