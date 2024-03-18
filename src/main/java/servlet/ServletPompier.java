@@ -84,6 +84,29 @@ public class ServletPompier extends HttpServlet {
            getServletContext().getRequestDispatcher("/vues/pompier/listerPompiers.jsp").forward(request, response);
         }
         
+         // Récup et affichage des clients interessés par une certaine catégorie de ventes
+        if(url.equals("/sdisweb/ServletPompier/consulter"))
+        {  
+            // tout paramètre récupéré de la request Http est de type String
+            // Il est donc nécessaire de caster le paramètre idPompier en int
+            int idPompier = Integer.parseInt((String)request.getParameter("idPompier"));
+            System.out.println( "pompier à afficher = " + idPompier);
+            getServletContext().getRequestDispatcher("/vues/pompier/consulterPompier.jsp").forward(request, response);       
+            /*ArrayList<Client> lesClients = ClientDAO.getLesClients(connection, codeCat);
+            request.setAttribute("pLesClients", lesClients);*/
+           
+        }
+        /*
+         if(url.equals("/equida/ServletClient/ajouterClient"))
+        {                   
+            ArrayList<Pays> lesPays = PaysDAO.getLesPays(connection);
+            request.setAttribute("pLesPays", lesPays);
+            
+            ArrayList<CategVente> lesCategVentes = CategVenteDAO.getLesCategVentes(connection);
+            request.setAttribute("pLesCategVente", lesCategVentes);
+            this.getServletContext().getRequestDispatcher("/vues/client/ajouterClient.jsp" ).forward( request, response );
+        }
+        */
         
         
         
