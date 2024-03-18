@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Caserne"%>
+<%@page import="form.FormPompier"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +16,10 @@
     </head>
     <body>
         <h1>NOUVEAU POMPIER</h1>
+        
+            <%
+                FormPompier form = (FormPompier)request.getAttribute("form");
+            %>
         
         <form class="form-inline" action="ajouter" method="POST">
                 <label for="nom">NOM : </label>
@@ -27,8 +32,8 @@
                
                 
                 <%-- Champ Liste des caserbes --%>
-                <label for="pays">Caserne : </label>
-                <select name="codePays">
+                <label for="caserne">Caserne : </label>
+                <select name="idPompier">
                     <%
                         ArrayList<Caserne> lesCasernes= (ArrayList)request.getAttribute("pLesCasernes");
                         for (int i=0; i<lesCasernes.size();i++){

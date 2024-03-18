@@ -6,6 +6,7 @@ package servlet;
 
 import database.DaoCaserne;
 import database.DaoPompier;
+import form.FormPompier;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -123,7 +124,32 @@ public class ServletPompier extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+         FormPompier form = new FormPompier();
+		
+        /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+        Pompier p = form.ajouterPompier(request);
+        
+        /* Stockage du formulaire et de l'objet dans l'objet request */
+        request.setAttribute( "form", form );
+        request.setAttribute( "pPompier", p );
+		
+        if (form.getErreurs().isEmpty()){
+            // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
+            this.getServletContext().getRequestDispatcher("/vues/pompier/consulterPompier.jsp" ).forward( request, response );
+        }
+        else
+        { 
+            // il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
+            ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
+            request.setAttribute("pLesCasernes", lesCasernes);
+            this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterPompier.jsp" ).forward( request, response );
+        }
+        
+        
+        
+        
+        
     }
 
     /**

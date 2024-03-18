@@ -19,6 +19,11 @@ public class Caserne {
     public Caserne() {
     }
 
+    public Caserne(int id) {
+        this.id = id;
+    }
+
+    
     public int getId() {
         return id;
     }
