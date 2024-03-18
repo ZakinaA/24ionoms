@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>SDIS WEB</title>
     </head>
     <body>
         <head>
@@ -42,9 +42,9 @@
                             out.println(p.getId());
                             out.println("</a></td>");
 
-                            out.println("<td>");
+                            out.println("<td><a href ='../ServletPompier/consulter?idPompier="+ p.getId()+ "'>");
                             out.println(p.getNom());
-                            out.println("</td>");
+                            out.println("</td>");;
 
                             out.println("<td>");
                             out.println(p.getPrenom());
