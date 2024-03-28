@@ -42,4 +42,5 @@ public class SousGrade {
     public void setGrade(Grade grade) {
         this.grade = grade;
     }
+    
 }
