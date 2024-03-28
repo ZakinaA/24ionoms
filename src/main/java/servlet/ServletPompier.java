@@ -52,7 +52,7 @@ public class ServletPompier extends HttpServlet {
                 break;
             default:
                 System.out.println("Page web non trouvé : " + url);
-                throw new AssertionError(); 
+                throw new AssertionError();
         }
     }
     
