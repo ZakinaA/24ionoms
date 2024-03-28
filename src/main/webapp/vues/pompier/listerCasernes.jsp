@@ -37,8 +37,7 @@
             <tbody>
                 <tr>
                     <%
-                        for (Caserne c : lesCasernes)
-                        {              
+                        for (Caserne c : lesCasernes){              
                             out.println("<tr><td>");
                             out.println(c.getId());
                             out.println("</a></td>");
