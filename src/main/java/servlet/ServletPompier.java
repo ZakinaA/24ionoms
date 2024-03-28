@@ -42,12 +42,12 @@ public class ServletPompier extends HttpServlet {
         switch (url) {
             
             //Pages Pompier
-            case "/sdisweb/ServletPompier/listerFonction":
+            case "/sdisweb/servletPompier/listerfonction":
                 getServletContext().getRequestDispatcher("/vues/Fonction/listerFonction.jsp").forward(request, response);
                 break;
             
             //Pages Caserne
-            case "/sdisweb/ServletCaserne/listerCasernes":
+            case "/sdisweb/servletCaserne/listercasernes":
                 getServletContext().getRequestDispatcher("/vues/caserne/listerCasernes.jsp").forward(request, response);
                 break;
             default:
