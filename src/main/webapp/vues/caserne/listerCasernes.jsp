@@ -42,7 +42,7 @@
                             out.println(c.getId());
                             out.println("</a></td>");
 
-                            out.println("<td><a href ='../ServletPompier/consulter?idPompier=" + p.getId() + "'>");
+                            out.println("<td>");
                             out.println(c.getNom());
                             out.println("</td>");;
 
