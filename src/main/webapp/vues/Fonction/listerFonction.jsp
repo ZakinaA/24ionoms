@@ -36,7 +36,7 @@
                             out.println("<td>");
                             out.println(f.getLibelle());
                             out.println("</td>");
-                        }
+                        } // Affichage fonctions //
                     %>
                 </tr>
             </tbody>
