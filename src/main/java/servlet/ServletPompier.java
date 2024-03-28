@@ -37,10 +37,22 @@ public class ServletPompier extends HttpServlet {
      @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        String url = request.getRequestURI();
+        String url = request.getRequestURI().toLowerCase();
         
-        if(url.equals("/sdisweb/ServletPompier/listerFonction")){
-            getServletContext().getRequestDispatcher("/vues/Fonction/listerFonction.jsp").forward(request, response);
+        switch (url) {
+            
+            //Pages Pompier
+            case "/sdisweb/ServletPompier/listerFonction":
+                getServletContext().getRequestDispatcher("/vues/Fonction/listerFonction.jsp").forward(request, response);
+                break;
+            
+            //Pages Caserne
+            case "/sdisweb/ServletCaserne/listerCasernes":
+                getServletContext().getRequestDispatcher("/vues/caserne/listerCasernes.jsp").forward(request, response);
+                break;
+            default:
+                System.out.println("Page web non trouvé : " + url);
+                throw new AssertionError();
         }
     }
     
