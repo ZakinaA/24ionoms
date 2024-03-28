@@ -4,6 +4,7 @@
  */
 package servlet;
 
+import database.DaoFonction;
 import database.DaoCaserne;
 import database.DaoPompier;
 import form.FormPompier;
@@ -42,12 +43,14 @@ public class ServletPompier extends HttpServlet {
         switch (url) {
             
             //Pages Pompier
-            case "/sdisweb/servletPompier/listerfonction":
+            case "/sdisweb/servletpompier/listerfonction":
+                ArrayList lesFonctions = DaoFonction.listerFonctions(cnx);
+                request.setAttribute("LesFonctions", lesFonctions);
                 getServletContext().getRequestDispatcher("/vues/Fonction/listerFonction.jsp").forward(request, response);
                 break;
             
             //Pages Caserne
-            case "/sdisweb/servletCaserne/listercasernes":
+            case "/sdisweb/servletcaserne/listercasernes":
                 getServletContext().getRequestDispatcher("/vues/caserne/listerCasernes.jsp").forward(request, response);
                 break;
             default:
