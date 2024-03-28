@@ -24,7 +24,7 @@ import model.Pompier;
  *
  * @author zakina
  */
-public class ServletPompier extends HttpServlet {
+public class ServletCaserne extends HttpServlet {
 
      Connection cnx ;
             
@@ -42,11 +42,9 @@ public class ServletPompier extends HttpServlet {
         
         switch (url) {
             
-            //Pages Pompier
-            case "/sdisweb/servletpompier/listerfonction":
-                ArrayList lesFonctions = DaoFonction.listerFonctions(cnx);
-                request.setAttribute("LesFonctions", lesFonctions);
-                getServletContext().getRequestDispatcher("/vues/Fonction/listerFonction.jsp").forward(request, response);
+            //Pages caserne
+            case "/sdisweb/servletcaserne/listercasernes":
+                getServletContext().getRequestDispatcher("/vues/caserne/listerCasernes.jsp").forward(request, response);
                 break;
             
             default:

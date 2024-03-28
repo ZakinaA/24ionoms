@@ -25,6 +25,10 @@
         <servlet-name>ServletPompier</servlet-name>
         <url-pattern>/ServletPompier/listerFonction</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCaserne</servlet-name>
+        <url-pattern>/ServletCaserne/listerCasernes</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
