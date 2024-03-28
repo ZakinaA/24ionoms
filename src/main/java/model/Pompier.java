@@ -11,10 +11,11 @@ package model;
 public class Pompier {
     
     private int id;
-    private String bip ;
+    private String bip;
     private String nom;
-    private String prenom ;
-    private Caserne uneCaserne ;
+    private String prenom;
+    private Caserne uneCaserne;
+    private SousGrade sousgrade;
 
     public Pompier() {
     }
@@ -58,7 +59,16 @@ public class Pompier {
     public void setUneCaserne(Caserne uneCaserne) {
         this.uneCaserne = uneCaserne;
     }
+
+    public SousGrade getSousgrade() {
+        return sousgrade;
+    }
+
+    public void setSousgrade(SousGrade sousgrade) {
+        this.sousgrade = sousgrade;
+    }
     
-    
-    
+    public Grade getgrade() {
+        return sousgrade.getGrade();
+    }
 }
