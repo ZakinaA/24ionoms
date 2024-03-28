@@ -17,16 +17,16 @@ public class Fonction {
     
     public Fonction(){}
     
-    public Fonction(int code){
-        this.id = code;
+    public Fonction(int id){
+        this.id = id;
     }
     
-    public Fonction(int code, String libelle){
-        this.id = code;
+    public Fonction(int id, String libelle){
+        this.id = id;
         this.libelle = libelle;
     }
 
-    public int getCode() {
+    public int getId() {
         return id;
     }
 
@@ -34,8 +34,8 @@ public class Fonction {
         return libelle;
     }
 
-    public void setCode(int code) {
-        this.id = code;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setLibelle(String libelle) {

@@ -20,20 +20,20 @@ public class DaoFonction {
     static PreparedStatement requeteSql = null;
     static ResultSet resultatRequete = null;
     
-    public static ArrayList<Fonction> getLesFonctions(Connection cnx){
+    public static ArrayList<Fonction> listerFonctions(Connection cnx){
         
-        ArrayList<Fonction> lesFonctions= new ArrayList<Fonction>();
+        ArrayList<Fonction> lesFonctions = new ArrayList<Fonction>();
         try{
             if(requeteSql == null) requeteSql = cnx.prepareStatement("select * from fonction");
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
                 
-                Fonction c = new Fonction();
-                    c.setCode(resultatRequete.getInt("id"));
-                    c.setLibelle(resultatRequete.getString("libelle"));
+                Fonction f = new Fonction();
+                    f.setId(resultatRequete.getInt("id"));
+                    f.setLibelle(resultatRequete.getString("libelle"));
 
-                lesFonctions.add(c);
+                lesFonctions.add(f);
             }
            
         }
