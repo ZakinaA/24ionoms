@@ -8,15 +8,17 @@ package model;
  *
  * @author ts1sio
  */
-public class SousGrade {
+public class SurGrade {
     private int id;
     private String libelle;
-    private Grade grade;
     
-    public SousGrade(int id, String libelle, Grade grade){
+    public SurGrade(){
+        
+    }
+    
+    public SurGrade(int id, String libelle){
         this.id = id;
         this.libelle = libelle;
-        this.grade = grade;
     }
 
     public int getId() {
@@ -34,13 +36,4 @@ public class SousGrade {
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
-
-    public Grade getGrade() {
-        return grade;
-    }
-
-    public void setGrade(Grade grade) {
-        this.grade = grade;
-    }
-    
 }

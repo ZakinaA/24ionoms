@@ -31,7 +31,7 @@ public class ServletPompier extends HttpServlet {
     public void init()
     {     
         ServletContext servletContext=getServletContext();
-        cnx = (Connection)servletContext.getAttribute("connection");     
+        cnx = (Connection)servletContext.getAttribute("connection");
     }
 
     

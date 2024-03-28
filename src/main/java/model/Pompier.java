@@ -15,7 +15,7 @@ public class Pompier {
     private String nom;
     private String prenom;
     private Caserne uneCaserne;
-    private SousGrade sousgrade;
+    private Grade grade;
 
     public Pompier() {
     }
@@ -60,15 +60,15 @@ public class Pompier {
         this.uneCaserne = uneCaserne;
     }
 
-    public SousGrade getSousgrade() {
-        return sousgrade;
+    public Grade getGrade() {
+        return grade;
     }
 
-    public void setSousgrade(SousGrade sousgrade) {
-        this.sousgrade = sousgrade;
+    public void setGrade(Grade grade) {
+        this.grade = grade;
     }
     
-    public Grade getgrade() {
-        return sousgrade.getGrade();
+    public SurGrade getSurGrade(SurGrade sgrade){
+        return grade.getSurGrade();
     }
 }
