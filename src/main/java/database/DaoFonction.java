@@ -24,7 +24,7 @@ public class DaoFonction {
         
         ArrayList<Fonction> lesFonctions= new ArrayList<Fonction>();
         try{
-            requeteSql = cnx.prepareStatement("select * from fonction");
+            if(requeteSql == null) requeteSql = cnx.prepareStatement("select * from fonction");
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){

@@ -27,7 +27,7 @@ public class DaoCaserne {
         
         ArrayList<Caserne> lesCasernes= new ArrayList<Caserne>();
         try{
-            requeteSql = cnx.prepareStatement("select * from caserne");
+            if(requeteSql == null) requeteSql = cnx.prepareStatement("select * from caserne");
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
