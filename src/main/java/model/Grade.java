@@ -11,16 +11,16 @@ package model;
 public class Grade {
     private int id;
     private String libelle;
-    private SurGrade grade;
+    private SurGrade surgrade;
     
     public Grade(){
         
     }
     
-    public Grade(int id, String libelle, SurGrade grade){
+    public Grade(int id, String libelle, SurGrade surgrade){
         this.id = id;
         this.libelle = libelle;
-        this.grade = grade;
+        this.surgrade = surgrade;
     }
 
     public int getId() {
@@ -40,10 +40,10 @@ public class Grade {
     }
 
     public SurGrade getSurGrade() {
-        return grade;
+        return surgrade;
     }
 
     public void setSurGrade(SurGrade grade) {
-        this.grade = grade;
+        this.surgrade = surgrade;
     }
 }

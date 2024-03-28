@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Caserne;
+import model.Grade;
 import model.Pompier;
 
 /**
@@ -27,8 +28,9 @@ public class DaoPompier {
         ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
         try{
             requeteSql = cnx.prepareStatement("select pompier.id as p_id, pompier.nom as p_nom, pompier.prenom as p_prenom, c.id as c_id, c.nom as c_nom " +
-                         " from pompier inner join caserne c " +
-                         " on pompier.caserne_id = c.id ");
+                         "from pompier " +
+                         "inner join caserne c on pompier.caserne_id = c.id " +
+                         "inner join grade g on pompier.grade_id = c.id");
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
@@ -54,11 +56,48 @@ public class DaoPompier {
         return lesPompiers;
     }
     
+    public static ArrayList<Pompier> getLesPompiers(Connection cnx, int gradeId){
+        
+        ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
+        try{
+            requeteSql = cnx.prepareStatement("select pompier.id as p_id, pompier.nom as p_nom, pompier.prenom as p_prenom, c.id as c_id, c.nom as c_nom, g.id as g_id, g.libelle as g_libelle " +
+                         "from pompier " +
+                         "inner join caserne c on pompier.caserne_id = c.id " +
+                         "inner join grade g on pompier.grade_id = c.id");
+            resultatRequete = requeteSql.executeQuery();
+            
+            while (resultatRequete.next()){
+                
+                Pompier p = new Pompier();
+                    p.setId(resultatRequete.getInt("p_id"));
+                    p.setNom(resultatRequete.getString("p_nom"));
+                    p.setPrenom(resultatRequete.getString("p_prenom"));
+                Caserne c = new Caserne();
+                    c.setId(resultatRequete.getInt("c_id"));
+                    c.setNom(resultatRequete.getString("c_nom"));
+                
+                p.setUneCaserne(c);
+                
+                lesPompiers.add(p);
+            }
+           
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("La requête de getLesPompiers e généré une erreur");
+        }
+        return lesPompiers;
+    }
+    
+    public static ArrayList<Pompier> getLesPompiers(Connection cnx, Grade grade){
+        return getLesPompiers(cnx, grade.getId());
+    }
+    
     public static Pompier getPompierById(Connection cnx, int idPompier){
         
         Pompier p = null ;
         try{
-            requeteSql = cnx.prepareStatement("select pompier.id as p_id, pompier.nom as p_nom, pompier.prenom as p_prenom, c.id as c_id, c.nom as c_nom " +
+            if(requeteSql == null) requeteSql = cnx.prepareStatement("select pompier.id as p_id, pompier.nom as p_nom, pompier.prenom as p_prenom, c.id as c_id, c.nom as c_nom " +
                          " from pompier inner join caserne c " +
                          " on pompier.caserne_id = c.id "+
                          " where pompier.id= ? ");
