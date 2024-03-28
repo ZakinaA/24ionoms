@@ -20,23 +20,24 @@
         <table>  
             <thead>
                 <tr>             
-                    <th>id</th>
-                    <th>libellé</th>                
+                    <th style='border:1px solid black'>id</th>
+                    <th style='border:1px solid black'>libellé</th>                
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <%
+                        out.println("<h1>Liste des fonctions</h1>");
                         for (Fonction f : lesFonctions)
                         {              
-                            out.println("<tr><td><a>");
+                            out.println("<tr><td style='border:1px solid black'><a>");
                             out.println(f.getId());
                             out.println("</a></td>");
 
-                            out.println("<td>");
+                            out.println("<td style='border:1px solid black'>");
                             out.println(f.getLibelle());
                             out.println("</td>");
-                        } // Affichage fonctions //
+                        } // Affichage des fonctions //
                     %>
                 </tr>
             </tbody>
