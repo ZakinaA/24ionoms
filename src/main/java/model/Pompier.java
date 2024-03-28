@@ -67,4 +67,8 @@ public class Pompier {
     public void setSousgrade(SousGrade sousgrade) {
         this.sousgrade = sousgrade;
     }
+    
+    public Grade getgrade() {
+        return sousgrade.getGrade();
+    }
 }
