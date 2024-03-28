@@ -14,7 +14,7 @@ public class Caserne {
     
     private int id;
     private String nom ;
-    private ArrayList<Pompier> lesPompiers ;
+    private ArrayList<Pompier> lesPompiers;
 
     public Caserne() {
     }

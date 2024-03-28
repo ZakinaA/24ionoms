@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,6 +17,8 @@ public class Pompier {
     private String prenom;
     private Caserne uneCaserne;
     private SousGrade sousgrade;
+    
+    private ArrayList<Fonction> lesFonctions;
 
     public Pompier() {
     }
@@ -70,5 +73,20 @@ public class Pompier {
     
     public Grade getgrade() {
         return sousgrade.getGrade();
+    }
+
+    public ArrayList<Fonction> getLesFonctions() {
+        return lesFonctions;
+    }
+
+    public void setLesFonctions(ArrayList<Fonction> lesFonctions) {
+        this.lesFonctions = lesFonctions;
+    }
+
+    public void addPompier(Fonction f){
+        if (lesFonctions == null){
+            lesFonctions = new ArrayList<Fonction>();
+        }
+        lesFonctions.add(f);
     }
 }

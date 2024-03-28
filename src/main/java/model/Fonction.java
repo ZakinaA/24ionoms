@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+import java.util.ArrayList;
 
 /**
  *
@@ -10,22 +11,23 @@ package model;
  */
 
 public class Fonction {
-    private int code;
+    private int id;
     private String libelle;
+    private ArrayList<Pompier> lesPompiers;
     
     public Fonction(){}
     
     public Fonction(int code){
-        this.code = code;
+        this.id = code;
     }
     
     public Fonction(int code, String libelle){
-        this.code = code;
+        this.id = code;
         this.libelle = libelle;
     }
 
     public int getCode() {
-        return code;
+        return id;
     }
 
     public String getLibelle() {
@@ -33,10 +35,25 @@ public class Fonction {
     }
 
     public void setCode(int code) {
-        this.code = code;
+        this.id = code;
     }
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
+    }
+    
+    public ArrayList<Pompier> getLesPompiers() {
+        return lesPompiers;
+    }
+
+    public void setLesPompiers(ArrayList<Pompier> lesPompiers) {
+        this.lesPompiers = lesPompiers;
+    }
+    
+    public void addPompier(Pompier p){
+        if (lesPompiers == null){
+            lesPompiers = new ArrayList<Pompier>();
+        }
+        lesPompiers.add(p);
     }
 }
