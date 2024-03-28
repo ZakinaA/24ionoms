@@ -21,6 +21,10 @@
         <servlet-name>ServletPompier</servlet-name>
         <url-pattern>/ServletPompier/ajouter</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletPompier</servlet-name>
+        <url-pattern>/ServletPompier/listerFonction</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
