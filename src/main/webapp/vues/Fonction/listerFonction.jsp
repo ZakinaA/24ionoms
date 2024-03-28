@@ -37,7 +37,7 @@
                             out.println("<td style='border:1px solid black'>");
                             out.println(f.getLibelle());
                             out.println("</td>");
-                        } // Affichage fonctions //
+                        } // Affichage des fonctions //
                     %>
                 </tr>
             </tbody>
