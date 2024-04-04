@@ -25,7 +25,7 @@ import model.Pompier;
  *
  * @author zakina
  */
-public class ServletPompier extends HttpServlet {
+public class ServletFonction extends HttpServlet {
 
      Connection cnx ;
             
@@ -43,8 +43,13 @@ public class ServletPompier extends HttpServlet {
         
         switch (url) {
             
-            // Corentin !!! c'est ici les modif des pompiers
-            
+            //Pages Fonctions
+            case "/sdisweb/servletfonction/listerfonction":
+                ArrayList lesFonctions = DaoFonction.listerFonctions(cnx);
+                request.setAttribute("LesFonctions", lesFonctions);
+                getServletContext().getRequestDispatcher("/vues/Fonction/listerFonction.jsp").forward(request, response);
+                break;
+                
             default:
                 System.out.println("Page web non trouvé : " + url);
                 throw new AssertionError();
@@ -68,10 +73,10 @@ public class ServletPompier extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletPompier</title>");            
+            out.println("<title>Servlet ServletFonction</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletPompier at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletFonction at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
