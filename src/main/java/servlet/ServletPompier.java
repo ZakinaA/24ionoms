@@ -4,6 +4,8 @@
  */
 package servlet;
 
+import database.DaoFonction;
+import database.DaoVehicules;
 import database.DaoCaserne;
 import database.DaoPompier;
 import form.FormPompier;
@@ -33,9 +35,6 @@ public class ServletPompier extends HttpServlet {
         ServletContext servletContext=getServletContext();
         cnx = (Connection)servletContext.getAttribute("connection");     
     }
-
-    
-    
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
