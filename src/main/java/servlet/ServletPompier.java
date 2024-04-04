@@ -33,22 +33,7 @@ public class ServletPompier extends HttpServlet {
     public void init()
     {     
         ServletContext servletContext=getServletContext();
-        cnx = (Connection)servletContext.getAttribute("connection");
-    }
-
-     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-        String url = request.getRequestURI().toLowerCase();
-        
-        switch (url) {
-            
-            // Corentin !!! c'est ici les modif des pompiers
-            
-            default:
-                System.out.println("Page web non trouvé : " + url);
-                throw new AssertionError();
-        }
+        cnx = (Connection)servletContext.getAttribute("connection");     
     }
     
     /**
@@ -76,4 +61,113 @@ public class ServletPompier extends HttpServlet {
             out.println("</html>");
         }
     }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+         String url = request.getRequestURI();  
+       
+        // Récup et affichage les eleves 
+        if(url.equals("/sdisweb/ServletPompier/lister"))
+        {              
+            ArrayList<Pompier> lesPompiers = DaoPompier.getLesPompiers(cnx);
+            request.setAttribute("LesPompiers", lesPompiers);
+            //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
+           getServletContext().getRequestDispatcher("/vues/pompier/listerPompiers.jsp").forward(request, response);
+        }
+        
+         // Récup et affichage des clients interessés par une certaine catégorie de ventes
+        if(url.equals("/sdisweb/ServletPompier/consulter"))
+        {  
+            // tout paramètre récupéré de la request Http est de type String
+            // Il est donc nécessaire de caster le paramètre idPompier en int
+            int idPompier = Integer.parseInt((String)request.getParameter("idPompier"));
+            System.out.println( "pompier à afficher = " + idPompier);
+            Pompier p= DaoPompier.getPompierById(cnx, idPompier);
+            request.setAttribute("pPompier", p);
+            getServletContext().getRequestDispatcher("/vues/pompier/consulterPompier.jsp").forward(request, response);       
+           
+           
+        }
+        
+        if(url.equals("/sdisweb/ServletPompier/ajouter"))
+        {                   
+            ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
+            request.setAttribute("pLesCasernes", lesCasernes);
+            this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterPompier.jsp" ).forward( request, response );
+        }
+        
+        
+        
+        
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+         FormPompier form = new FormPompier();
+		
+        /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+        Pompier p = form.ajouterPompier(request);
+        
+        /* Stockage du formulaire et de l'objet dans l'objet request */
+        request.setAttribute( "form", form );
+        request.setAttribute( "pPompier", p );
+		
+        if (form.getErreurs().isEmpty()){
+            Pompier pompierInsere =  DaoPompier.addPompier(cnx, p);
+            if (pompierInsere != null ){
+                request.setAttribute( "pPompier", pompierInsere );
+                this.getServletContext().getRequestDispatcher("/vues/pompier/consulterPompier.jsp" ).forward( request, response );
+            }
+            else 
+            {
+                // Cas oùl'insertion en bdd a échoué
+                //renvoyer vers une page d'erreur 
+            }
+           
+        }
+        else
+        { 
+            // il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
+            ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
+            request.setAttribute("pLesCasernes", lesCasernes);
+            this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterPompier.jsp" ).forward( request, response );
+        }
+        
+        
+        
+        
+        
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
 }

@@ -101,6 +101,7 @@ public class DaoPompier {
                          " from pompier inner join caserne c " +
                          " on pompier.caserne_id = c.id "+
                          " where pompier.id= ? ");
+            System.out.println(requeteSql);
             requeteSql.setInt(1, idPompier);
             resultatRequete = requeteSql.executeQuery();
             
