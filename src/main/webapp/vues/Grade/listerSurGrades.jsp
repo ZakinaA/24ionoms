@@ -22,7 +22,7 @@
     <body>
         <h1>Liste des pompiers du Calvados</h1>
             <%
-                ArrayList<Grade> grades = (ArrayList)request.getAttribute("grades");
+                ArrayList<Grade> surgrades = (ArrayList)request.getAttribute("surgrades");
             %>
             <table>  
             <thead>
@@ -36,13 +36,13 @@
             <tbody>
                 <tr>
                     <%
-                        for (Grade g : grades)
+                        for (SurGrade g : surgrades)
                         {
                             out.println("<tr><td>");
                             out.println("" + g.getId());
                             out.println("</a></td>");
 
-                            out.println("<td><a href ='../ServletPompier/consulter?idPompier="+ g.getId()+ "'>");
+                            out.println("<td><a href ='../ServletGrade/consulterGrade?id="+ g.getId()+ "'>");
                             out.println(g.getLibelle());
                             out.println("</td>");;
 

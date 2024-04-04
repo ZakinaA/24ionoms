@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Grade"%>
-<%@page import="model.SurGrade"%>
+<%@page import="model.Pompier"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -20,38 +20,39 @@
         <title>APPLICATION DE GESTION SDIS CALVADOS</title>
     </head>
     <body>
-        <h1>Liste des grades de la caserne du Calvados</h1>
+        <h1>Grade de la caserne du Calvados</h1>
             <%
-                ArrayList<Grade> grades = (ArrayList)request.getAttribute("grades");
+                ArrayList<Pompier> pompiers = (ArrayList)request.getAttribute("pompiers");
             %>
             <table>  
             <thead>
                 <tr>             
                     <th>id</th>
-                    <th>libelle</th>
-                    <th>surgrade id</th>
-                    <th>surgrade libelle</th>                
+                    <th>bip</th>
+                    <th>nom</th>
+                    <th>prenom</th>
+                    <th>caserne_id</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <%
-                        for (Grade g : grades)
+                        for (Pompier p : pompiers)
                         {
                             out.println("<tr><td>");
-                            out.println("" + g.getId());
+                            out.println(p.getId());
                             out.println("</a></td>");
 
-                            out.println("<td><a href ='../ServletGrade/consulterGrade?id="+ g.getId()+ "'>");
-                            out.println(g.getLibelle());
+                            out.println("<td><a href ='../ServletPompier/consulter?idPompier="+ p.getId()+ "'>");
+                            out.println(p.getNom());
                             out.println("</td>");;
 
                             out.println("<td>");
-                            out.println("" + g.getSurGrade().getId());
+                            out.println(p.getPrenom());
                             out.println("</td>");
                            
                             out.println("<td>");
-                            out.println(g.getSurGrade().getLibelle());
+                            out.println(p.getUneCaserne().getNom());
                             out.println("</td>");
                         }
                     %>
