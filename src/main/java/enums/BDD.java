@@ -10,7 +10,7 @@ package enums;
  */
 public enum BDD {
     DISTANTE("jdbc:mariadb://172.20.177.250:3306/24IOONOMS", "ADM_IOONOMS", "mpSdis24Ioonoms"),
-    LOCALE("jdbc:mariadb://127.0.0.1:3307/sdis", "root", "");
+    LOCAL("jdbc:mariadb://127.0.0.1:3307/sdis", "root", "");
     
     public final String url;
     public final String user;
