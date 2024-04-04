@@ -48,6 +48,10 @@
         <servlet-name>ServletVehicule</servlet-name>
         <url-pattern>/ServletVehicule/listerVehicules</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletVehicule</servlet-name>
+        <url-pattern>/ServletVehicule/listerTypeVehicule</url-pattern>
+    </servlet-mapping>
     
     
     <session-config>
