@@ -6,6 +6,7 @@ package servlet;
 
 import database.DaoFonction;
 import database.DaoVehicules;
+import database.DaoTypeVehicule;
 import database.DaoCaserne;
 import database.DaoPompier;
 import form.FormPompier;
@@ -44,10 +45,10 @@ public class ServletVehicule extends HttpServlet {
         switch (url) {
             
             // Pages vehicules
-            case "/sdisweb/servletvehicule/listervehicules":
-                ArrayList lesVehicules = DaoVehicules.listerVehicules(cnx);
-                request.setAttribute("LesVehicules", lesVehicules);
-                getServletContext().getRequestDispatcher("/vues/Vehicules/listerVehicules.jsp").forward(request, response);
+            case "/sdisweb/servletvehicule/listertypevehicule":
+                ArrayList lesTypeVehicule = DaoTypeVehicule.listerTypeVehicule(cnx);
+                request.setAttribute("LesTypeVehicule", lesTypeVehicule);
+                getServletContext().getRequestDispatcher("/vues/Vehicules/listerTypeVehicule.jsp").forward(request, response);
                 break;
             
             default:
