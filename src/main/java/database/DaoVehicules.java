@@ -25,20 +25,24 @@ public class DaoVehicules {
         
         ArrayList<Vehicules> lesVehicules = new ArrayList<Vehicules>();
         try{
-            if(requeteSql == null) requeteSql = cnx.prepareStatement("select * from fonction");
+            if(requeteSql == null) requeteSql = cnx.prepareStatement("SELECT v.id as v_id, v.immat as v_immat, v.dateOrigin as v_dateOrigin, v.dateRevision as v_dateRevision, c.id as c_id, c.nom as c_nom "
+                    + "FROM vehicule v "
+                    + "INNER JOIN caserne c "
+                    + "ON c.id = v.caserne ");
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
                 
                 Vehicules v = new Vehicules();
-                    v.setId(resultatRequete.getInt("id"));
-                    v.setImmat(resultatRequete.getString("immat"));
-                    v.setDateOrigin(resultatRequete.getDate("dateOrigin"));
-                    v.setDateRevision(resultatRequete.getDate("dateRevision"));
-                    
+                v.setId(resultatRequete.getInt("vehicule.id"));
+                v.setImmat(resultatRequete.getString("v_immat"));
+                v.setDateOrigin(resultatRequete.getDate("v_dateOrigin"));
+                v.setDateRevision(resultatRequete.getDate("v_dateRevision"));
+                
+                
                 Caserne c = new Caserne();
-                    c.setId(resultatRequete.getInt("id"));
-                    c.setNom(resultatRequete.getString("nom"));
+                c.setId(resultatRequete.getInt("c_id"));
+                c.setNom(resultatRequete.getString("c_nom"));
                     
                 v.setUneCaserne(c);
                 lesVehicules.add(v);

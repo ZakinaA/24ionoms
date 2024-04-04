@@ -22,8 +22,8 @@
                 <tr>             
                     <th style='border:1px solid black'>id</th>
                     <th style='border:1px solid black'>Immatricule</th>  
-                    <th style='border:1px solid black'>Date origine</th>
-                    <th style='border:1px solid black'>Date révision</th>
+                    <th style='border:1px solid black'>Date Origine</th>
+                    <th style='border:1px solid black'>Date Révision</th>
                     <th style='border:1px solid black'>Caserne</th>
                 </tr>
             </thead>
@@ -31,26 +31,27 @@
                 <tr>
                     <%
                         out.println("<h1>Liste des Vehicules</h1>");
-                        for (Fonction f : lesFonctions)
+                        for (Vehicules v : lesVehicules)
                         {              
                             out.println("<tr><td style='border:1px solid black'><a>");
-                            out.println(f.getId());
+                            out.println(v.getId());
                             out.println("</a></td>");
 
                             out.println("<td style='border:1px solid black'>");
-                            out.println(f.getImmat());
+                            out.println(v.getImmat());
                             out.println("</td>");
                             
                             out.println("<td style='border:1px solid black'>");
-                            out.println(f.getDateOrigin());
+                            out.println(v.getDateOrigin());
                             out.println("</td>");
                             
                             out.println("<td style='border:1px solid black'>");
-                            out.println(f.getDateRevision());
+                            out.println(v.getDateRevision());
                             out.println("</td>");
                             
+                            
                             out.println("<td style='border:1px solid black'>");
-                            out.println(f.getUneCaserne().getNom());
+                            out.println(v.getUneCaserne().getNom());
                             out.println("</td>");
                         } // Affichage des fonctions //
                     %>
