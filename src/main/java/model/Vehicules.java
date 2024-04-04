@@ -66,5 +66,5 @@ public class Vehicules {
 
     public void setUneCaserne(Caserne uneCaserne) {
         this.uneCaserne = uneCaserne;
-    }
+    }//
 }
