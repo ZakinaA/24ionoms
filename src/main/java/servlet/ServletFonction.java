@@ -20,6 +20,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import model.Caserne;
 import model.Pompier;
+import model.Fonction;
 
 /**
  *
@@ -48,6 +49,10 @@ public class ServletFonction extends HttpServlet {
                 ArrayList lesFonctions = DaoFonction.listerFonctions(cnx);
                 request.setAttribute("LesFonctions", lesFonctions);
                 getServletContext().getRequestDispatcher("/vues/Fonction/listerFonction.jsp").forward(request, response);
+                break;
+                
+            case "/sdisweb/servletfonction/ajouterfonction":
+                getServletContext().getRequestDispatcher("/vues/Fonction/ajouterFonction.jsp").forward(request, response);
                 break;
                 
             default:
