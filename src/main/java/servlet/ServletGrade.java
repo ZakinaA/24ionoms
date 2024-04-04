@@ -50,6 +50,19 @@ public class ServletGrade extends HttpServlet {
                 getServletContext().getRequestDispatcher("/vues/Grade/listerGrades.jsp").forward(request, response);
                 break;
             
+            case "/sdisweb/servletgrade/consultergrade":
+                int id = Integer.parseInt(request.getParameter("id"));
+                ArrayList pompiers = DaoPompier.getLesPompiers(cnx, id);
+                request.setAttribute("pompiers", pompiers);
+                getServletContext().getRequestDispatcher("/vues/Grade/consulterGrade.jsp").forward(request, response);
+                break;
+            
+            case "/sdisweb/servletgrade/listersurgrades":
+                ArrayList surgrades = DaoGrade.getLesGrades(cnx);
+                request.setAttribute("surgrades", surgrades);
+                getServletContext().getRequestDispatcher("/vues/Grade/listerSurGrades.jsp").forward(request, response);
+                break;
+            
             default:
                 System.out.println("Page web non trouvé : " + url);
                 throw new AssertionError();
