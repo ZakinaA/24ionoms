@@ -52,8 +52,8 @@ public class DaoCaserne {
             if(requeteSql == null) requeteSql = cnx.prepareStatement("select caserne.Cas_id as c_id, caserne.Cas_Nom as c_nom " +
                          "from caserne " +
                          "where caserne.Cas_id=1");
-            requeteSql.setInt(1, c_id);
             
+            requeteSql.setInt(1, c_id);
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
@@ -61,7 +61,7 @@ public class DaoCaserne {
                 Caserne c = new Caserne();
                 c.setId(resultatRequete.getInt("c_id"));
                 c.setNom(resultatRequete.getString("c_nom"));
-
+                
             }
            
         }

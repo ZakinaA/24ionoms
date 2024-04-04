@@ -24,15 +24,11 @@
                 <div class="inf">
                     <div class="caserneInfo">
                         <label>Id :</label>
-                        <span><%
-                            caserne.getId()
-                        %></span>
+                        <span><%caserne.getId()%></span>
                     </div>
                     <div class="caserneInfo">
                         <label>Nom :</label>
-                        <span><%
-                            caserne.getNom()
-                        %></span>
+                        <span><%caserne.getNom()%></span>
                     </div>                  
                 </div>
             </main>
