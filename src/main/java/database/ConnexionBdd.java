@@ -4,6 +4,7 @@
  */
 package database;
 
+import enums.BDD;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,6 +16,8 @@ import java.sql.Statement;
  * @author Zakina
  */
 public class ConnexionBdd {
+    
+    static final BDD bdd = BDD.LOCAL;
     
     public static Connection connection=null;
     public static Statement st=null;
@@ -31,7 +34,7 @@ public class ConnexionBdd {
         }     
         try {
             //obtention de la connexion
-            connection= DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3307/sdis","root","");
+            connection = DriverManager.getConnection(bdd.url, bdd.user, bdd.password);
             System.out.println("Connexion OK");
            
         } catch (SQLException e) {
