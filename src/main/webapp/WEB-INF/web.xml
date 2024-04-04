@@ -6,17 +6,21 @@
     </listener>
     
     <!-- INSTANCIATION -->
-    <servlet>
+    <servlet> <!-- POMPIER -->
         <servlet-name>ServletPompier</servlet-name>
         <servlet-class>servlet.ServletPompier</servlet-class>
     </servlet>
-    <servlet>
+    <servlet> <!-- FONCTION -->
         <servlet-name>ServletFonction</servlet-name>
         <servlet-class>servlet.ServletFonction</servlet-class>
     </servlet>
-    <servlet>
+    <servlet> <!-- VEHICULE -->
         <servlet-name>ServletVehicule</servlet-name>
         <servlet-class>servlet.ServletVehicule</servlet-class>
+    </servlet>
+    <servlet> <!-- GRADE -->
+        <servlet-name>ServletGrade</servlet-name>
+        <servlet-class>servlet.ServletGrade</servlet-class>
     </servlet>
     
     <!-- POMPIER -->
@@ -44,9 +48,21 @@
         <servlet-name>ServletVehicule</servlet-name>
         <url-pattern>/ServletVehicule/listerVehicules</url-pattern>
     </servlet-mapping>
+    
+    
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    
+    <!-- GRADE -->
+    <servlet-mapping>
+        <servlet-name>ServletGrade</servlet-name>
+        <url-pattern>/ServletGrade/listerGrades</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletGrade</servlet-name>
+        <url-pattern>/ServletGrade/consulterGrade</url-pattern>
+    </servlet-mapping>
 </web-app>
