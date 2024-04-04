@@ -25,7 +25,7 @@ import model.Pompier;
  *
  * @author zakina
  */
-public class ServletPompier extends HttpServlet {
+public class ServletVehicule extends HttpServlet {
 
      Connection cnx ;
             
@@ -43,7 +43,12 @@ public class ServletPompier extends HttpServlet {
         
         switch (url) {
             
-            // Corentin !!! c'est ici les modif des pompiers
+            // Pages vehicules
+            case "/sdisweb/servletvehicule/listervehicules":
+                ArrayList lesVehicules = DaoVehicules.listerVehicules(cnx);
+                request.setAttribute("LesVehicules", lesVehicules);
+                getServletContext().getRequestDispatcher("/vues/Vehicules/listerVehicules.jsp").forward(request, response);
+                break;
             
             default:
                 System.out.println("Page web non trouvé : " + url);
@@ -68,10 +73,10 @@ public class ServletPompier extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletPompier</title>");            
+            out.println("<title>Servlet ServletVehicule</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletPompier at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletVehicule at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
