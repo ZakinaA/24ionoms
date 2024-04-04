@@ -12,10 +12,8 @@ import java.sql.Date;
 
 public class Vehicules {
     private int id;
-    private String immat;
-    private Date dateOrigin;
-    private Date dateRevision;
-    private Caserne uneCaserne;
+    private String nom;
+    private String caracteristique;
     
     public Vehicules(){}
     
@@ -23,9 +21,9 @@ public class Vehicules {
         this.id = id;
     }
     
-    public Vehicules(int id, String immat){
+    public Vehicules(int id, String nom){
         this.id = id;
-        this.immat = immat;
+        this.nom = nom;
     }
 
     public int getId() {
@@ -36,35 +34,19 @@ public class Vehicules {
         this.id = id;
     }
 
-    public String getImmat() {
-        return immat;
+    public String getNom() {
+        return nom;
     }
 
-    public void setImmat(String immat) {
-        this.immat = immat;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public Date getDateOrigin() {
-        return dateOrigin;
+    public String getCaracteristique() {
+        return caracteristique;
     }
 
-    public void setDateOrigin(Date dateOrigin) {
-        this.dateOrigin = dateOrigin;
+    public void setCaracteristique(String caracteristique) {
+        this.caracteristique = caracteristique;
     }
-
-    public Date getDateRevision() {
-        return dateRevision;
-    }
-
-    public void setDateRevision(Date dateRevision) {
-        this.dateRevision = dateRevision;
-    }
-
-    public Caserne getUneCaserne() {
-        return uneCaserne;
-    }
-
-    public void setUneCaserne(Caserne uneCaserne) {
-        this.uneCaserne = uneCaserne;
-    }//
 }

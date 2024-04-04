@@ -21,10 +21,8 @@
             <thead>
                 <tr>             
                     <th style='border:1px solid black'>id</th>
-                    <th style='border:1px solid black'>Immatricule</th>  
-                    <th style='border:1px solid black'>Date Origine</th>
-                    <th style='border:1px solid black'>Date Révision</th>
-                    <th style='border:1px solid black'>Caserne</th>
+                    <th style='border:1px solid black'>Nom</th>  
+                    <th style='border:1px solid black'>caracteristique</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,20 +36,11 @@
                             out.println("</a></td>");
 
                             out.println("<td style='border:1px solid black'>");
-                            out.println(v.getImmat());
+                            out.println(v.getNom());
                             out.println("</td>");
                             
                             out.println("<td style='border:1px solid black'>");
-                            out.println(v.getDateOrigin());
-                            out.println("</td>");
-                            
-                            out.println("<td style='border:1px solid black'>");
-                            out.println(v.getDateRevision());
-                            out.println("</td>");
-                            
-                            
-                            out.println("<td style='border:1px solid black'>");
-                            out.println(v.getUneCaserne().getNom());
+                            out.println(v.getCaracteristique());
                             out.println("</td>");
                         } // Affichage des fonctions //
                     %>
