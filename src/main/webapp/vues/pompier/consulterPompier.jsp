@@ -19,7 +19,26 @@
         <h1>Bienvenue <%  out.println(p.getPrenom());%>  <%  out.println(p.getNom());%></h1>
         <table>
             <tr>
-                <td>Numero Bip : </td><td>bip bip</td>
+               
+                 <%
+                          out.println("<tr>Numero Bip<td>");
+                            out.println(p.getBip());
+                            out.println("</a></td>");
+
+                            out.println("<td><a href ='../ServletPompier/consulter?idPompier="+ p.getId()+ "'>");
+                            out.println(p.getNom());
+                            out.println("</td>");;
+
+                            out.println("<td>");
+                            out.println(p.getPrenom());
+                            out.println("</td>");
+                           
+                            out.println("<td>");
+                            out.println(p.getUneCaserne().getNom());
+                            out.println("</td>");
+                               
+                        
+                    %>
             </tr>
             <tr>
                 <td>Caserne : </td><td><%  out.println(p.getUneCaserne().getNom());%></td>
