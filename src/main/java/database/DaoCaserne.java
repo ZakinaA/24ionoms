@@ -13,12 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Caserne;
 
-/**
- *
- * @author zakina
- */
 public class DaoCaserne {
-    
+
     Connection cnx;
     static PreparedStatement requeteSql = null;
     static ResultSet resultatRequete = null;
@@ -27,14 +23,16 @@ public class DaoCaserne {
         
         ArrayList<Caserne> lesCasernes= new ArrayList<Caserne>();
         try{
-            if(requeteSql == null) requeteSql = cnx.prepareStatement("select * from caserne");
+            if(requeteSql == null) requeteSql = cnx.prepareStatement("select caserne.Cas_id as c_id, caserne.Cas_Nom as c_nom " +
+                         "from caserne " +
+                         "where caserne.Cas_id=1");
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
                 
                 Caserne c = new Caserne();
-                    c.setId(resultatRequete.getInt("id"));
-                    c.setNom(resultatRequete.getString("nom"));
+                    c.setId(resultatRequete.getInt("c_id"));
+                    c.setNom(resultatRequete.getString("c_nom"));
 
                 lesCasernes.add(c);
             }
@@ -47,4 +45,30 @@ public class DaoCaserne {
         return lesCasernes;
     }
     
+    public static Caserne getCaserneById(Connection cnx, int c_id) {
+        
+        Caserne uneCaserne = new Caserne();
+        try{
+            if(requeteSql == null) requeteSql = cnx.prepareStatement("select caserne.Cas_id as c_id, caserne.Cas_Nom as c_nom " +
+                         "from caserne " +
+                         "where caserne.Cas_id=1");
+            requeteSql.setInt(1, c_id);
+            
+            resultatRequete = requeteSql.executeQuery();
+            
+            while (resultatRequete.next()){
+                
+                Caserne c = new Caserne();
+                c.setId(resultatRequete.getInt("c_id"));
+                c.setNom(resultatRequete.getString("c_nom"));
+
+            }
+           
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("La requête de getCaserneById a généré une erreur");
+        }
+        return uneCaserne;
+    }
 }
