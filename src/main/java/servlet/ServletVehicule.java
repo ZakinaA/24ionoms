@@ -37,15 +37,16 @@ public class ServletVehicule extends HttpServlet {
         cnx = (Connection)servletContext.getAttribute("connection");
     }
 
-     @Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         String url = request.getRequestURI().toLowerCase();
+        String[] args = url.split("/");
         
-        switch (url) {
+        // Pages Vehicules
+        switch (args[3]) {
             
-            // Pages vehicules
-            case "/sdisweb/servletvehicule/listertypevehicule":
+            case "listertypevehicule":
                 ArrayList lesTypeVehicule = DaoTypeVehicule.listerTypeVehicule(cnx);
                 request.setAttribute("LesTypeVehicule", lesTypeVehicule);
                 getServletContext().getRequestDispatcher("/vues/Vehicules/listerTypeVehicule.jsp").forward(request, response);
