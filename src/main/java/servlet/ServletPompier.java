@@ -74,42 +74,37 @@ public class ServletPompier extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String url = request.getRequestURI();
+        String[] args = url.split("/");
         
-         String url = request.getRequestURI();  
-       
-        // Récup et affichage les eleves 
-        if(url.equals("/sdisweb/ServletPompier/lister"))
-        {              
-            ArrayList<Pompier> lesPompiers = DaoPompier.getLesPompiers(cnx);
-            request.setAttribute("LesPompiers", lesPompiers);
-            //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
-           getServletContext().getRequestDispatcher("/vues/pompier/listerPompiers.jsp").forward(request, response);
+        // Pages Pompiers
+        switch (args[3]) {
+            
+            case "lister":
+                ArrayList<Pompier> lesPompiers = DaoPompier.getLesPompiers(cnx);
+                request.setAttribute("LesPompiers", lesPompiers);
+                //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
+                getServletContext().getRequestDispatcher("/vues/pompier/listerPompiers.jsp").forward(request, response);
+                break;
+            
+            case "consulter":
+                int idPompier = Integer.parseInt((String)request.getParameter("idPompier"));
+                System.out.println( "pompier à afficher = " + idPompier);
+                Pompier p= DaoPompier.getPompierById(cnx, idPompier);
+                request.setAttribute("pPompier", p);
+                getServletContext().getRequestDispatcher("/vues/pompier/consulterPompier.jsp").forward(request, response);
+                break;
+
+            case "ajouter":
+                ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
+                request.setAttribute("pLesCasernes", lesCasernes);
+                this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterPompier.jsp" ).forward( request, response );
+                break;
+            
+            default:
+                System.out.println("Page web non trouvé : " + url);
+                throw new AssertionError();
         }
-        
-         // Récup et affichage des clients interessés par une certaine catégorie de ventes
-        if(url.equals("/sdisweb/ServletPompier/consulter"))
-        {  
-            // tout paramètre récupéré de la request Http est de type String
-            // Il est donc nécessaire de caster le paramètre idPompier en int
-            int idPompier = Integer.parseInt((String)request.getParameter("idPompier"));
-            System.out.println( "pompier à afficher = " + idPompier);
-            Pompier p= DaoPompier.getPompierById(cnx, idPompier);
-            request.setAttribute("pPompier", p);
-            getServletContext().getRequestDispatcher("/vues/pompier/consulterPompier.jsp").forward(request, response);       
-           
-           
-        }
-        
-        if(url.equals("/sdisweb/ServletPompier/ajouter"))
-        {                   
-            ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
-            request.setAttribute("pLesCasernes", lesCasernes);
-            this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterPompier.jsp" ).forward( request, response );
-        }
-        
-        
-        
-        
     }
 
     /**

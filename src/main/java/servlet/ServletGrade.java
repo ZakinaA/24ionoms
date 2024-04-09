@@ -41,23 +41,25 @@ public class ServletGrade extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         String url = request.getRequestURI().toLowerCase();
+        String[] args = url.split("/");
         
-        switch (url) {
+        // Pages Grades
+        switch (args[3]) {
             
-            case "/sdisweb/servletgrade/listergrades":
+            case "listergrades":
                 ArrayList grades = DaoGrade.getLesGrades(cnx);
                 request.setAttribute("grades", grades);
                 getServletContext().getRequestDispatcher("/vues/Grade/listerGrades.jsp").forward(request, response);
                 break;
             
-            case "/sdisweb/servletgrade/consultergrade":
+            case "consultergrade":
                 int id = Integer.parseInt(request.getParameter("id"));
                 ArrayList pompiers = DaoPompier.getLesPompiers(cnx, id);
                 request.setAttribute("pompiers", pompiers);
                 getServletContext().getRequestDispatcher("/vues/Grade/consulterGrade.jsp").forward(request, response);
                 break;
             
-            case "/sdisweb/servletgrade/listersurgrades":
+            case "listersurgrades":
                 ArrayList surgrades = DaoGrade.getLesGrades(cnx);
                 request.setAttribute("surgrades", surgrades);
                 getServletContext().getRequestDispatcher("/vues/Grade/listerSurGrades.jsp").forward(request, response);
