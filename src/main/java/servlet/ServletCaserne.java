@@ -39,17 +39,18 @@ public class ServletCaserne extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         String url = request.getRequestURI().toLowerCase();
+        String[] args = url.split("/");
         
-        switch (url) {
+        switch (args[3]) {
             
             //Pages Casernes
-            case "/sdisweb/servletcaserne/listercaserne":
+            case "listercaserne":
                 ArrayList lesCasernes = DaoCaserne.getLesCasernes(cnx);
                 request.setAttribute("LesCasernes", lesCasernes);
                 getServletContext().getRequestDispatcher("/vues/Caserne/listerCaserne.jsp").forward(request, response);
                 break;
                 
-            case "/sdisweb/servletcaserne/consultercaserne":
+            case "consultercaserne":
                 int c_id = Integer.parseInt((String)request.getParameter("c_id"));
                 System.out.println( "Caserne à afficher = " + c_id);
                 Caserne c= DaoCaserne.getCaserneById(cnx, c_id);
