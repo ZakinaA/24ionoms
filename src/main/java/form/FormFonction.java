@@ -43,7 +43,7 @@ public class FormFonction {
     }
 
     private void setErreur( String champ, String message ) {
-    erreurs.put(champ, message );
+        erreurs.put(champ, message );
     }    
     
     private static String getDataForm( HttpServletRequest request, String nomChamp ) {
@@ -60,12 +60,10 @@ public class FormFonction {
       
         Fonction f  = new Fonction();
          
-        String nom = getDataForm( request, "libelle" );
-        int idFonction = Integer.parseInt((String)getDataForm( request, "idFonction" ));
-       
+        String libelle = getDataForm( request, "libelle" );
       
         try {
-             validationLibelle( libelle );
+             validationLibelle(libelle);
         } catch ( Exception e ) {
             setErreur( "libelle", e.getMessage() );
         }
@@ -76,7 +74,6 @@ public class FormFonction {
         } else {
             resultat = "Échec de l'ajout.";
         }
-        
         return f ;
     }
     

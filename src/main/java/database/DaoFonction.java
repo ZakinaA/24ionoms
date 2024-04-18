@@ -27,6 +27,7 @@ public class DaoFonction {
         try{
             if(requeteSql == null) requeteSql = cnx.prepareStatement("select * from fonction");
             resultatRequete = requeteSql.executeQuery();
+            System.out.println(resultatRequete);
             
             while (resultatRequete.next()){
                 
@@ -74,21 +75,19 @@ public class DaoFonction {
     public static Fonction addFonction(Connection cnx, Fonction f){
         int idGenere = -1;
         try{
-            
-            
             requeteSql = cnx.prepareStatement("INSERT INTO fonction ( libelle ) VALUES (?)", requeteSql.RETURN_GENERATED_KEYS );
             requeteSql.setString(1, f.getLibelle());
-           
+            System.out.println(f.getLibelle());
             requeteSql.executeUpdate();
-            
-            
+            System.out.println(requeteSql);
             resultatRequete = requeteSql.getGeneratedKeys();
-            while ( resultatRequete.next() ) {
+            
+            /*while ( resultatRequete.next() ) {
                 idGenere = resultatRequete.getInt( 1 );
                 f.setId(idGenere);
                 
                 f = DaoFonction.getFonctionById(cnx, f.getId());
-            }
+            }*/
         }
         catch (SQLException e){
             e.printStackTrace();

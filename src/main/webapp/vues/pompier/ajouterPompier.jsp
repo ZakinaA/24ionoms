@@ -31,7 +31,7 @@
                  </br>
                
                 
-                <%-- Champ Liste des caserbes --%>
+                <%-- Champ Liste des casernes --%>
                 <label for="caserne">Caserne : </label>
                 <select name="idPompier">
                     <%

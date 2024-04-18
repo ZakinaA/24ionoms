@@ -16,7 +16,7 @@ import model.Pompier;
  */
 public class FormPompier {
     
-     private String resultat;
+    private String resultat;
     private Map<String, String> erreurs      = new HashMap<String, String>();
 
     public String getResultat() {

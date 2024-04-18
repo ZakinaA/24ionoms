@@ -17,7 +17,7 @@ import java.sql.Statement;
  */
 public class ConnexionBdd {
     
-    static final BDD bdd = BDD.LOCAL;
+    static final BDD bdd = BDD.DISTANTE;
     
     public static Connection connection=null;
     public static Statement st=null;

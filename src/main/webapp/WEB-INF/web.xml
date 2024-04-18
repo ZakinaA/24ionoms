@@ -42,6 +42,10 @@
         <servlet-name>ServletFonction</servlet-name>
         <url-pattern>/ServletFonction/listerFonction</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletFonction</servlet-name>
+        <url-pattern>/ServletFonction/ajouterFonction</url-pattern>
+    </servlet-mapping>
     
     <!-- VEHICULE -->
     <servlet-mapping>

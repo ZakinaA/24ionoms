@@ -8,6 +8,7 @@ import database.ConnexionBdd;
 import database.DaoCaserne;
 import database.DaoFonction;
 import java.sql.Connection;
+import model.Fonction;
 
 /**
  *
@@ -19,7 +20,11 @@ public class TestDaoFonction {
         
         Connection cnx = ConnexionBdd.ouvrirConnexion();
         System.out.println ("nombre de fonctions = " + DaoFonction.listerFonctions(cnx).size());
+        
+        Fonction f = new Fonction();
+        f.setLibelle("CHAUVEL");
            
+        DaoFonction.addFonction(cnx,f);
     }
     
 }
