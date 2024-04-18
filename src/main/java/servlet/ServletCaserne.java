@@ -22,7 +22,7 @@ import model.Caserne;
 
 /**
  *
- * @author zakina
+ * @author Dan
  */
 public class ServletCaserne extends HttpServlet {
 
@@ -44,10 +44,10 @@ public class ServletCaserne extends HttpServlet {
         switch (args[3]) {
             
             //Pages Casernes
-            case "listercaserne":
-                ArrayList lesCasernes = DaoCaserne.getLesCasernes(cnx);
-                request.setAttribute("LesCasernes", lesCasernes);
-                getServletContext().getRequestDispatcher("/vues/Caserne/listerCaserne.jsp").forward(request, response);
+            case "listercasernes":
+                ArrayList LesCasernes = DaoCaserne.getLesCasernes(cnx);
+                request.setAttribute("LesCasernes", LesCasernes);
+                getServletContext().getRequestDispatcher("/vues/caserne/listerCasernes.jsp").forward(request, response);
                 break;
                 
             case "consultercaserne":
