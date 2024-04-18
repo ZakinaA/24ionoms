@@ -38,7 +38,7 @@
                             out.println(c.getId());
                             out.println("</a></td>");
 
-                            out.println("<td>");
+                            out.println("<td><a href ='../ServletCaserne/consulter?idCaserne="+ p.getId()+ "'>");
                             out.println(c.getNom());
                             out.println("</td>");;
 
