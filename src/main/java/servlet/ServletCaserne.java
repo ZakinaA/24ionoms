@@ -51,10 +51,9 @@ public class ServletCaserne extends HttpServlet {
                 break;
                 
             case "consultercaserne":
-                int c_id = Integer.parseInt((String)request.getParameter("c_id"));
-                System.out.println( "Caserne à afficher = " + c_id);
-                Caserne c= DaoCaserne.getCaserneById(cnx, c_id);
-                request.setAttribute("cCaserne", c);
+                int id = Integer.parseInt(request.getParameter("id"));
+                Caserne uneCaserne = DaoCaserne.getCaserneById(cnx, id);
+                request.setAttribute("uneCaserne", uneCaserne);
                 getServletContext().getRequestDispatcher("/vues/caserne/consulterCaserne.jsp").forward(request, response);
                 break;
                 
