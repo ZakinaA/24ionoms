@@ -52,7 +52,7 @@ public class DaoCaserne {
         
         Caserne uneCaserne = new Caserne();
         try{
-            if(requeteSql == null) requeteSql = cnx.prepareStatement("select caserne.id as c_id, caserne.nom as c_nom, caserne.rue as c_rue, caserne.copos as c_copos, caserne.ville as c_ville " +
+            requeteSql = cnx.prepareStatement("select caserne.id as c_id, caserne.nom as c_nom, caserne.rue as c_rue, caserne.copos as c_copos, caserne.ville as c_ville " +
                          " from caserne " +
                          " where caserne.id= ? ");
             
@@ -68,7 +68,6 @@ public class DaoCaserne {
                 c.setVille(resultatRequete.getString("c_ville"));
                 
                 return c;
-                
             }
         
         System.out.println("Aucune caserne trouvé avec l'Id : " + id);
