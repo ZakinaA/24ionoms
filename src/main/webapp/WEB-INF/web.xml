@@ -73,4 +73,15 @@
         <servlet-name>ServletGrade</servlet-name>
         <url-pattern>/ServletGrade/consulterGrade</url-pattern>
     </servlet-mapping>
+    
+    <!-- CASERNE -->
+    <servlet-mapping>
+        <servlet-name>ServletCaserne</servlet-name>
+        <url-pattern>/ServletCaserne/listerCasernes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCaserne</servlet-name>
+        <url-pattern>/ServletCaserne/consulterCasernes</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
