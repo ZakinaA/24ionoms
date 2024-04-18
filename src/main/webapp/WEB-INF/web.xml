@@ -22,6 +22,10 @@
         <servlet-name>ServletGrade</servlet-name>
         <servlet-class>servlet.ServletGrade</servlet-class>
     </servlet>
+    <servlet> <!-- CASERNE -->
+        <servlet-name>ServletCaserne</servlet-name>
+        <servlet-class>servlet.ServletCaserne</servlet-class>
+    </servlet>
     
     <!-- POMPIER -->
     <servlet-mapping>
