@@ -18,7 +18,7 @@ import java.sql.SQLException;
  */
 public class InitConnexion implements ServletContextListener {
     
-    final BDD bdd = BDD.LOCAL;
+    final BDD bdd = BDD.DISTANTE;
     
     Connection cnx = null;
     
