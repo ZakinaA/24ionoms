@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import model.Caserne;
 import model.Pompier;
+import model.Grade;
 
 /**
  *
@@ -42,13 +43,6 @@ public class ServletGrade extends HttpServlet {
         String url = request.getRequestURI().toLowerCase();
         String[] args = url.split("/");
         
-        if(!args[2].equals("servletgrade")){
-            request.setAttribute("servlet", "Grade");
-            request.setAttribute("page", args[3]);
-            getServletContext().getRequestDispatcher("/vues/error.jsp").forward(request, response);
-            return;
-        }
-        
         // Pages Grades
         switch (args[3]) {
             
@@ -59,9 +53,13 @@ public class ServletGrade extends HttpServlet {
                 break;
             
             case "consultergrade":
-                int id = Integer.parseInt(request.getParameter("id"));
-                ArrayList pompiers = DaoPompier.getLesPompiers(cnx, id);
-                request.setAttribute("pompiers", pompiers);
+                if(request.getParameter("id") != null){
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    Grade g = DaoGrade.getGrade(cnx, id);
+                    request.setAttribute("grade", g);
+                    request.setAttribute("pompiers", DaoPompier.getLesPompiers(cnx, g));
+                }
+                
                 getServletContext().getRequestDispatcher("/vues/Grade/consulterGrade.jsp").forward(request, response);
                 break;
             
