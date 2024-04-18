@@ -23,16 +23,19 @@ public class DaoCaserne {
         
         ArrayList<Caserne> lesCasernes= new ArrayList<Caserne>();
         try{
-            if(requeteSql == null) requeteSql = cnx.prepareStatement("select caserne.Cas_id as c_id, caserne.Cas_Nom as c_nom " +
-                         "from caserne " +
-                         "where caserne.Cas_id=1");
+            if(requeteSql == null) requeteSql = cnx.prepareStatement("select caserne.id as c_id, caserne.nom as c_nom, caserne.rue as c_rue, caserne.copos as c_copos, caserne.ville as c_ville " +
+                         "from caserne ");
+                         // "where caserne.id=1");
+            
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
-                
                 Caserne c = new Caserne();
-                    c.setId(resultatRequete.getInt("c_id"));
-                    c.setNom(resultatRequete.getString("c_nom"));
+                c.setId(resultatRequete.getInt("c_id"));
+                c.setNom(resultatRequete.getString("c_nom"));
+                c.setRue(resultatRequete.getString("c_rue"));
+                c.setCopos(resultatRequete.getInt("c_copos"));
+                c.setVille(resultatRequete.getString("c_ville"));
 
                 lesCasernes.add(c);
             }
@@ -40,35 +43,39 @@ public class DaoCaserne {
         }
         catch (SQLException e){
             e.printStackTrace();
-            System.out.println("La requête de getLesPompiers e généré une erreur");
+            System.out.println("La requête de getLesCasernes e généré une erreur");
         }
         return lesCasernes;
     }
     
-    public static Caserne getCaserneById(Connection cnx, int c_id) {
+    public static Caserne getCaserneById(Connection cnx, int id) {
         
         Caserne uneCaserne = new Caserne();
         try{
-            if(requeteSql == null) requeteSql = cnx.prepareStatement("select caserne.Cas_id as c_id, caserne.Cas_Nom as c_nom " +
-                         "from caserne " +
-                         "where caserne.Cas_id=1");
+            requeteSql = cnx.prepareStatement("select caserne.id as c_id, caserne.nom as c_nom, caserne.rue as c_rue, caserne.copos as c_copos, caserne.ville as c_ville " +
+                         " from caserne " +
+                         " where caserne.id= ? ");
             
-            requeteSql.setInt(1, c_id);
+            requeteSql.setInt(1, id);
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
-                
                 Caserne c = new Caserne();
                 c.setId(resultatRequete.getInt("c_id"));
                 c.setNom(resultatRequete.getString("c_nom"));
+                c.setRue(resultatRequete.getString("c_rue"));
+                c.setCopos(resultatRequete.getInt("c_copos"));
+                c.setVille(resultatRequete.getString("c_ville"));
                 
+                return c;
             }
-           
-        }
-        catch (SQLException e){
+        
+        System.out.println("Aucune caserne trouvé avec l'Id : " + id);
+        } catch (SQLException e){
             e.printStackTrace();
-            System.out.println("La requête de getCaserneById a généré une erreur");
+            System.out.println("La requête de getCaseneById a généré une erreur");
         }
+        
         return uneCaserne;
     }
 }

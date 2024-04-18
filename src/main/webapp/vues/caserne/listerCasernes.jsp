@@ -22,7 +22,7 @@
     <body>
         <h1>Liste des casernes du Calvados</h1>
             <%
-                ArrayList<Caserne> lesCasernes = (ArrayList)request.getAttribute("cLesCasernes");
+                ArrayList<Caserne> LesCasernes = (ArrayList)request.getAttribute("LesCasernes");
             %>
             <table>  
             <thead>
@@ -37,7 +37,8 @@
             <tbody>
                 <tr>
                     <%
-                        for (Caserne c : lesCasernes){              
+                        for (Caserne c : LesCasernes)
+                        {              
                             out.println("<tr><td>");
                             out.println(c.getId());
                             out.println("</a></td>");
@@ -47,15 +48,15 @@
                             out.println("</td>");;
 
                             out.println("<td>");
-                            out.println(p.getRue());
+                            out.println(c.getRue());
                             out.println("</td>");
                            
                             out.println("<td>");
-                            out.println("" + p.getCopos());
+                            out.println("" + c.getCopos());
                             out.println("</td>");
                             
                             out.println("<td>");
-                            out.println(p.getVille());
+                            out.println(c.getVille());
                             out.println("</td>");
                         }
                     %>

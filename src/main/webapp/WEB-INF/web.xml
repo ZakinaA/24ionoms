@@ -22,6 +22,10 @@
         <servlet-name>ServletGrade</servlet-name>
         <servlet-class>servlet.ServletGrade</servlet-class>
     </servlet>
+    <servlet> <!-- CASERNE -->
+        <servlet-name>ServletCaserne</servlet-name>
+        <servlet-class>servlet.ServletCaserne</servlet-class>
+    </servlet>
     
     <!-- POMPIER -->
     <servlet-mapping>
@@ -73,4 +77,15 @@
         <servlet-name>ServletGrade</servlet-name>
         <url-pattern>/ServletGrade/consulterGrade</url-pattern>
     </servlet-mapping>
+    
+    <!-- CASERNE -->
+    <servlet-mapping>
+        <servlet-name>ServletCaserne</servlet-name>
+        <url-pattern>/ServletCaserne/listerCasernes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCaserne</servlet-name>
+        <url-pattern>/ServletCaserne/consulterCaserne</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

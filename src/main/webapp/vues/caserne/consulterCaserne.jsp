@@ -15,19 +15,46 @@
         <title>SDIS - Consulter une caserne</title>
     </head>
     <body>
-        <%
-            Caserne c = (Caserne)request.getAttribute("cCaserne");
-        %>
         <h1>Informations Caserne</h1>
-        <div class="caserne">
-            <main>
-                <div class="info">
-                    <div class="caserneInfo">
-                            <label>Id :</label>
-                        <tr><%= out.println(caserne.getId()) %></tr>
-                    </div>                  
-                </div>
-            </main>
-        </div>     
+        <%
+            Caserne c = (Caserne)request.getAttribute("uneCaserne");
+        %>
+        <table>  
+            <thead>
+                <tr>             
+                    <th>id</th>
+                    <th>nom</th>
+                    <th>rue</th>
+                    <th>code postal</th>
+                    <th>ville</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <%             
+                            out.println("<tr><td>");
+                            out.println(c.getId());
+                            out.println("</a></td>");
+
+                            out.println("<td>");
+                            out.println(c.getNom());
+                            out.println("</td>");;
+
+                            out.println("<td>");
+                            out.println(c.getRue());
+                            out.println("</td>");
+                           
+                            out.println("<td>");
+                            out.println("" + c.getCopos());
+                            out.println("</td>");
+                            
+                            out.println("<td>");
+                            out.println(c.getVille());
+                            out.println("</td>");
+                    %>
+                </tr>
+            </tbody>
+        </table>
+    </body>
     </body>
 </html>

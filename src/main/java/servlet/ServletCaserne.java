@@ -22,7 +22,7 @@ import model.Caserne;
 
 /**
  *
- * @author zakina
+ * @author Dan
  */
 public class ServletCaserne extends HttpServlet {
 
@@ -39,21 +39,21 @@ public class ServletCaserne extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         String url = request.getRequestURI().toLowerCase();
+        String[] args = url.split("/");
         
-        switch (url) {
+        switch (args[3]) {
             
             //Pages Casernes
-            case "/sdisweb/servletcaserne/listercaserne":
-                ArrayList lesCasernes = DaoCaserne.getLesCasernes(cnx);
-                request.setAttribute("LesCasernes", lesCasernes);
-                getServletContext().getRequestDispatcher("/vues/Caserne/listerCaserne.jsp").forward(request, response);
+            case "listercasernes":
+                ArrayList LesCasernes = DaoCaserne.getLesCasernes(cnx);
+                request.setAttribute("LesCasernes", LesCasernes);
+                getServletContext().getRequestDispatcher("/vues/caserne/listerCasernes.jsp").forward(request, response);
                 break;
                 
-            case "/sdisweb/servletcaserne/consultercaserne":
-                int c_id = Integer.parseInt((String)request.getParameter("c_id"));
-                System.out.println( "Caserne à afficher = " + c_id);
-                Caserne c= DaoCaserne.getCaserneById(cnx, c_id);
-                request.setAttribute("cCaserne", c);
+            case "consultercaserne":
+                int id = Integer.parseInt(request.getParameter("id"));
+                Caserne uneCaserne = DaoCaserne.getCaserneById(cnx, id);
+                request.setAttribute("uneCaserne", uneCaserne);
                 getServletContext().getRequestDispatcher("/vues/caserne/consulterCaserne.jsp").forward(request, response);
                 break;
                 
