@@ -10,18 +10,18 @@ import java.sql.Date;
  * @author matys
  */
 
-public class Vehicules {
+public class TypeVehicule {
     private int id;
     private String nom;
     private String caracteristique;
     
-    public Vehicules(){}
+    public TypeVehicule(){}
     
-    public Vehicules(int id){
+    public TypeVehicule(int id){
         this.id = id;
     }
     
-    public Vehicules(int id, String nom){
+    public TypeVehicule(int id, String nom){
         this.id = id;
         this.nom = nom;
     }

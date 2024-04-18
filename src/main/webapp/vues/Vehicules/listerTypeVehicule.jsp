@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.Vehicules"%>
+<%@page import="model.TypeVehicule"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@
     </head>
     <body>
         <%
-            ArrayList<Vehicules> lesVehicules = (ArrayList)request.getAttribute("LesVehicules");
+            ArrayList<TypeVehicule> lesTypeVehicule = (ArrayList)request.getAttribute("LesTypeVehicule");
         %>
         <table>  
             <thead>
@@ -28,8 +28,8 @@
             <tbody>
                 <tr>
                     <%
-                        out.println("<h1>Liste des Vehicules</h1>");
-                        for (Vehicules v : lesVehicules)
+                        out.println("<h1>Liste des Types de Vehicules</h1>");
+                        for (TypeVehicule v : lesTypeVehicule)
                         {              
                             out.println("<tr><td style='border:1px solid black'><a>");
                             out.println(v.getId());

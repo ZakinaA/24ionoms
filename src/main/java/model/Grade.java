@@ -43,7 +43,7 @@ public class Grade {
         return surgrade;
     }
 
-    public void setSurGrade(SurGrade grade) {
+    public void setSurGrade(SurGrade surgrade) {
         this.surgrade = surgrade;
     }
 }

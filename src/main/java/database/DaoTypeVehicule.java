@@ -10,32 +10,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Vehicules;
+import model.TypeVehicule;
 import model.Caserne;
 
 /**
  *
  * @author ts1sio
  */
-public class DaoVehicules {
+public class DaoTypeVehicule {
     Connection cnx;
     static PreparedStatement requeteSql = null;
     static ResultSet resultatRequete = null;
     
-    public static ArrayList<Vehicules> listerVehicules(Connection cnx){
+    public static ArrayList<TypeVehicule> listerTypeVehicule(Connection cnx){
         
-        ArrayList<Vehicules> lesVehicules = new ArrayList<Vehicules>();
+        ArrayList<TypeVehicule> lesTypeVehicule = new ArrayList<TypeVehicule>();
         try{
             if(requeteSql == null) requeteSql = cnx.prepareStatement("SELECT * FROM type_vehicule");
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
                 
-                Vehicules v = new Vehicules();
+                TypeVehicule v = new TypeVehicule();
                 v.setId(resultatRequete.getInt("id"));
                 v.setNom(resultatRequete.getString("nom"));
                 v.setCaracteristique(resultatRequete.getString("caracteristique"));
 
-                lesVehicules.add(v);
+                lesTypeVehicule.add(v);
             }
            
         }
@@ -43,6 +44,6 @@ public class DaoVehicules {
             e.printStackTrace();
             System.out.println("La requête de getLesPompiers e généré une erreur");
         }
-        return lesVehicules;
+        return lesTypeVehicule;
     }
 }

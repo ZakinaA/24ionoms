@@ -6,8 +6,8 @@ package servlet;
 
 import database.DaoFonction;
 import database.DaoVehicules;
-import database.DaoTypeVehicule;
 import database.DaoCaserne;
+import database.DaoGrade;
 import database.DaoPompier;
 import form.FormPompier;
 import jakarta.servlet.ServletContext;
@@ -26,7 +26,7 @@ import model.Pompier;
  *
  * @author zakina
  */
-public class ServletVehicule extends HttpServlet {
+public class ServletGrade extends HttpServlet {
 
      Connection cnx ;
             
@@ -37,19 +37,32 @@ public class ServletVehicule extends HttpServlet {
         cnx = (Connection)servletContext.getAttribute("connection");
     }
 
-    @Override
+     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         String url = request.getRequestURI().toLowerCase();
         String[] args = url.split("/");
         
-        // Pages Vehicules
+        // Pages Grades
         switch (args[3]) {
             
-            case "listertypevehicule":
-                ArrayList lesTypeVehicule = DaoTypeVehicule.listerTypeVehicule(cnx);
-                request.setAttribute("LesTypeVehicule", lesTypeVehicule);
-                getServletContext().getRequestDispatcher("/vues/Vehicules/listerTypeVehicule.jsp").forward(request, response);
+            case "listergrades":
+                ArrayList grades = DaoGrade.getLesGrades(cnx);
+                request.setAttribute("grades", grades);
+                getServletContext().getRequestDispatcher("/vues/Grade/listerGrades.jsp").forward(request, response);
+                break;
+            
+            case "consultergrade":
+                int id = Integer.parseInt(request.getParameter("id"));
+                ArrayList pompiers = DaoPompier.getLesPompiers(cnx, id);
+                request.setAttribute("pompiers", pompiers);
+                getServletContext().getRequestDispatcher("/vues/Grade/consulterGrade.jsp").forward(request, response);
+                break;
+            
+            case "listersurgrades":
+                ArrayList surgrades = DaoGrade.getLesGrades(cnx);
+                request.setAttribute("surgrades", surgrades);
+                getServletContext().getRequestDispatcher("/vues/Grade/listerSurGrades.jsp").forward(request, response);
                 break;
             
             default:
@@ -75,10 +88,10 @@ public class ServletVehicule extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletVehicule</title>");            
+            out.println("<title>Servlet ServletGrade</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletVehicule at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletPompier at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
