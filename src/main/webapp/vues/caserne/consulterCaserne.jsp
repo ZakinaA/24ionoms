@@ -17,8 +17,7 @@
     <body>
         <h1>Informations Caserne</h1>
         <%
-            Caserne c = (Caserne)request.getAttribute("Caserne");
-            ArrayList<uneCaserne> Caserne = (ArrayList)request.getAttribute("pompiers");
+            Caserne c = (Caserne)request.getAttribute("uneCaserne");
         %>
         <table>  
             <thead>
