@@ -21,14 +21,10 @@
         <h1>Informations Caserne</h1>
         <div class="caserne">
             <main>
-                <div class="inf">
+                <div class="info">
                     <div class="caserneInfo">
-                        <label>Id :</label>
-                        <span><%caserne.getId()%></span>
-                    </div>
-                    <div class="caserneInfo">
-                        <label>Nom :</label>
-                        <span><%caserne.getNom()%></span>
+                            <label>Id :</label>
+                        <tr><%= out.println(caserne.getId()) %></tr>
                     </div>                  
                 </div>
             </main>
