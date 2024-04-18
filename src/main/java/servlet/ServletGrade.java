@@ -27,8 +27,7 @@ import model.Pompier;
  * @author zakina
  */
 public class ServletGrade extends HttpServlet {
-
-     Connection cnx ;
+    Connection cnx ;
             
     @Override
     public void init()
@@ -42,6 +41,13 @@ public class ServletGrade extends HttpServlet {
             throws ServletException, IOException{
         String url = request.getRequestURI().toLowerCase();
         String[] args = url.split("/");
+        
+        if(!args[2].equals("servletgrade")){
+            request.setAttribute("servlet", "Grade");
+            request.setAttribute("page", args[3]);
+            getServletContext().getRequestDispatcher("/vues/error.jsp").forward(request, response);
+            return;
+        }
         
         // Pages Grades
         switch (args[3]) {

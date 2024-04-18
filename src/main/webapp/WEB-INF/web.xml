@@ -57,13 +57,6 @@
         <url-pattern>/ServletVehicule/listerTypeVehicule</url-pattern>
     </servlet-mapping>
     
-    
-    <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
-    </session-config>
-    
     <!-- GRADE -->
     <servlet-mapping>
         <servlet-name>ServletGrade</servlet-name>
@@ -77,7 +70,7 @@
         <servlet-name>ServletGrade</servlet-name>
         <url-pattern>/ServletGrade/consulterGrade</url-pattern>
     </servlet-mapping>
-    
+  
     <!-- CASERNE -->
     <servlet-mapping>
         <servlet-name>ServletCaserne</servlet-name>
@@ -88,4 +81,11 @@
         <url-pattern>/ServletCaserne/consulterCaserne</url-pattern>
     </servlet-mapping>
     
+  
+  
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
 </web-app>
