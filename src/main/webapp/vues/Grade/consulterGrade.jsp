@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Grade"%>
+<%@page import="model.SurGrade"%>
 <%@page import="model.Pompier"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
@@ -22,9 +23,44 @@
     <body>
         <h1>Grade de la caserne du Calvados</h1>
             <%
+                Grade g = (Grade)request.getAttribute("grade");
                 ArrayList<Pompier> pompiers = (ArrayList)request.getAttribute("pompiers");
+                
+                if(request.getParameter("id") == null){
+                    out.println("<p>Veuillez préciser l'Id du grade à consulter</p>");
+                    out.println("<a href='./listerGrades'>Retournes à la liste des Grades</a>");
+                    return;
+                }
             %>
-            <table>  
+            <table>
+                <tr>             
+                    <th>id</th>
+                    <th>libelle</th>
+                    <th>id surgrade</th>
+                    <th>surgrade</th>
+                </tr>
+                <tr>
+                    <%
+                        out.println("<td>");
+                        out.println(g.getId());
+                        out.println("</td>");
+                        
+                        out.println("<td>");
+                        out.println(g.getLibelle());
+                        out.println("</td>");
+                        
+                        out.println("<td>");
+                        out.println(g.getSurGrade().getId());
+                        out.println("</td>");
+                        
+                        out.println("<td>");
+                        out.println(g.getSurGrade().getLibelle());
+                        out.println("</td>");
+                    %>
+                </tr>
+            </table>
+            <h2>Pompiers ayant ce grade :</h2>
+            <table>
             <thead>
                 <tr>             
                     <th>id</th>
