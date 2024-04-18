@@ -99,10 +99,10 @@ public class DaoPompier {
         
         Pompier p = null ;
         try{
-            if(requeteSql == null) requeteSql = cnx.prepareStatement("select pompier.id as p_id, pompier.nom as p_nom, pompier.prenom as p_prenom, c.id as c_id, c.nom as c_nom " +
+            if(requeteSql == null) requeteSql = cnx.prepareStatement("select pompier.id as p_id, pompier.nom as p_nom, pompier.prenom as p_prenom, c.Cas_id as c_id, c.Cas_Nom as c_nom " +
                          " from pompier inner join caserne c " +
-                         " on pompier.caserne_id = c.id "+
-                         " where pompier.id= ? ");
+                         " on pompier.caserne_id = c.Cas_id "+
+                         " where pompier.id=1");
             System.out.println(requeteSql);
             requeteSql.setInt(1, idPompier);
             resultatRequete = requeteSql.executeQuery();
