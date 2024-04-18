@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SDIS WEB</title>
+        <title>SDIS - Lister une caserne</title>
     </head>
     <body>
         <head>

@@ -149,11 +149,7 @@ public class ServletPompier extends HttpServlet {
             request.setAttribute("pLesCasernes", lesCasernes);
             this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterPompier.jsp" ).forward( request, response );
         }
-        
-        
-        
-        
-        
+           
     }
 
     /**

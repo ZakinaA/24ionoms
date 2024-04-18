@@ -9,6 +9,7 @@ import database.DaoVehicules;
 import database.DaoCaserne;
 import database.DaoPompier;
 import form.FormPompier;
+import form.FormCaserne;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,6 +58,12 @@ public class ServletCaserne extends HttpServlet {
                 getServletContext().getRequestDispatcher("/vues/caserne/consulterCaserne.jsp").forward(request, response);
                 break;
                 
+            case "ajouter":
+                Caserne addCaserne = DaoCaserne.addCaserne(cnx);
+                request.setAttribute("addCaserne", addCaserne);
+                this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterCaserne.jsp" ).forward( request, response );
+                break;
+                
             default:
                 System.out.println("Page web non trouvé : " + url);
                 throw new AssertionError();
@@ -88,4 +95,42 @@ public class ServletCaserne extends HttpServlet {
             out.println("</html>");
         }
     }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+         FormCaserne form = new FormCaserne();
+		
+        /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+        Caserne c = form.ajouterCaserne(request);
+        
+        /* Stockage du formulaire et de l'objet dans l'objet request */
+        request.setAttribute( "form", form );
+        request.setAttribute( "uneCaserne", c );
+		
+        if (form.getErreurs().isEmpty()){
+            Caserne caserneInsere =  DaoCaserne.addCaserne(cnx, c);
+            if (caserneInsere != null ){
+                request.setAttribute( "uneCaserne", caserneInsere );
+                this.getServletContext().getRequestDispatcher("/vues/caserne/consulterCaserne.jsp" ).forward( request, response );
+            }
+            else 
+            {
+                // Cas où l'insertion en bdd a échoué
+                //renvoyer vers une page d'erreur 
+            }
+           
+        }
+        else
+        { 
+            // il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
+            ArrayList<Caserne> LesCasernes = DaoCaserne.getLesCasernes(cnx);
+            request.setAttribute("addCaserne", LesCasernes);
+            this.getServletContext().getRequestDispatcher("/vues/caserne/ajouterCaserne.jsp" ).forward( request, response );
+        }
+           
+    }
+    
 }
+

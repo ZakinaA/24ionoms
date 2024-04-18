@@ -84,6 +84,10 @@
         <servlet-name>ServletCaserne</servlet-name>
         <url-pattern>/ServletCaserne/consulterCaserne</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCaserne</servlet-name>
+        <url-pattern>/ServletCaserne/ajouterCaserne</url-pattern>
+    </servlet-mapping>
     
   
   
