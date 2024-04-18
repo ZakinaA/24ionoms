@@ -41,11 +41,13 @@ public class ServletFonction extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         String url = request.getRequestURI().toLowerCase();
+        String[] args = url.split("/");
         
-        switch (url) {
+        // Pages Fonctions
+        switch (args[3]) {
             
             //Pages Fonctions
-            case "/sdisweb/servletfonction/listerfonction":
+            case "listerfonction":
                 ArrayList lesFonctions = DaoFonction.listerFonctions(cnx);
                 request.setAttribute("LesFonctions", lesFonctions);
                 getServletContext().getRequestDispatcher("/vues/Fonction/listerFonction.jsp").forward(request, response);

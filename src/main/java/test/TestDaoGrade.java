@@ -37,7 +37,7 @@ public class TestDaoGrade {
         
     }
     
-    public static void main (String args[]){
+    public static void main14 (String args[]){
         Connection cnx = ConnexionBdd.ouvrirConnexion();
         for(Grade g : DaoGrade.getLesGrades(cnx)){
             SurGrade sg = g.getSurGrade();
@@ -51,4 +51,17 @@ public class TestDaoGrade {
         }
     }
     
+    public static void main (String args[]){
+        Connection cnx = ConnexionBdd.ouvrirConnexion();
+        for(Grade g : DaoGrade.getLesGrades(cnx)){
+            SurGrade sg = g.getSurGrade();
+            
+            System.out.println("----------"
+            + " \nID : " + g.getId()
+            + "\nLibelle : " + g.getLibelle()
+            + "\nSurGrade : "
+            + "\n   ID : " + sg.getId()
+            + "\n   Libelle : " + sg.getLibelle());
+        }
+    }
 }

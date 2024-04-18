@@ -4,6 +4,7 @@
  */
 package database;
 
+import enums.BDD;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
@@ -16,6 +17,8 @@ import java.sql.SQLException;
  * @author Zakina
  */
 public class InitConnexion implements ServletContextListener {
+    
+    final BDD bdd = BDD.LOCAL;
     
     Connection cnx = null;
     
@@ -32,10 +35,10 @@ public class InitConnexion implements ServletContextListener {
             try
             {
             //obtention de la connexion
-            cnx = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3307/sdis","root","");
+            cnx = DriverManager.getConnection(bdd.url, bdd.user, bdd.password);
             //sauvegarder la connexion dans le context
             servletContext.setAttribute("connection",cnx);
-            System.out.println("Connexion opérationnelle" + "jdbc:mariadb://127.0.0.1:3307/sdis");
+            System.out.println("Connexion opérationnelle" + bdd.url);
         }
         catch (SQLException e)
         {

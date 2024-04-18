@@ -30,7 +30,7 @@ public class DaoPompier {
             requeteSql = cnx.prepareStatement("select pompier.id as p_id, pompier.nom as p_nom, pompier.prenom as p_prenom, c.id as c_id, c.nom as c_nom " +
                          "from pompier " +
                          "inner join caserne c on pompier.caserne_id = c.id " +
-                         "inner join grade g on pompier.grade_id = c.id");
+                         "inner join grade g on pompier.grade_id = g.id");
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
@@ -63,7 +63,9 @@ public class DaoPompier {
             requeteSql = cnx.prepareStatement("select pompier.id as p_id, pompier.nom as p_nom, pompier.prenom as p_prenom, c.id as c_id, c.nom as c_nom, g.id as g_id, g.libelle as g_libelle " +
                          "from pompier " +
                          "inner join caserne c on pompier.caserne_id = c.id " +
-                         "inner join grade g on pompier.grade_id = c.id");
+                         "inner join grade g on pompier.grade_id = g.id " +
+                         "where g_id = ?");
+            requeteSql.setInt(1, gradeId);
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){

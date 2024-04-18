@@ -67,6 +67,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletGrade</servlet-name>
+        <url-pattern>/ServletGrade/listerSurGrades</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletGrade</servlet-name>
         <url-pattern>/ServletGrade/consulterGrade</url-pattern>
     </servlet-mapping>
 </web-app>
