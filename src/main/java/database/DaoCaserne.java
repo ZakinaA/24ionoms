@@ -23,16 +23,19 @@ public class DaoCaserne {
         
         ArrayList<Caserne> lesCasernes= new ArrayList<Caserne>();
         try{
-            if(requeteSql == null) requeteSql = cnx.prepareStatement("select caserne.Cas_id as c_id, caserne.Cas_Nom as c_nom " +
+            if(requeteSql == null) requeteSql = cnx.prepareStatement("select caserne.id as c_id, caserne.nom as c_nom, caserne.rue as c_rue, caserne.copos as c_copos, caserne.ville as c_ville " +
                          "from caserne " +
-                         "where caserne.Cas_id=1");
+                         "where caserne.id=1");
+            
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
-                
                 Caserne c = new Caserne();
-                    c.setId(resultatRequete.getInt("c_id"));
-                    c.setNom(resultatRequete.getString("c_nom"));
+                c.setId(resultatRequete.getInt("c_id"));
+                c.setNom(resultatRequete.getString("c_nom"));
+                c.setRue(resultatRequete.getString("c_rue"));
+                c.setCopos(resultatRequete.getInt("c_copos"));
+                c.setVille(resultatRequete.getString("c_ville"));
 
                 lesCasernes.add(c);
             }
@@ -40,7 +43,7 @@ public class DaoCaserne {
         }
         catch (SQLException e){
             e.printStackTrace();
-            System.out.println("La requête de getLesPompiers e généré une erreur");
+            System.out.println("La requête de getLesCasernes e généré une erreur");
         }
         return lesCasernes;
     }
