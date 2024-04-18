@@ -31,7 +31,7 @@
                     <th>bip</th>
                     <th>nom</th>
                     <th>prenom</th>
-                    <th>caserne_id</th>
+                    <th>caserne</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,9 +43,15 @@
                             out.println(p.getId());
                             out.println("</a></td>");
 
-                            out.println("<td><a href ='../ServletPompier/consulter?idPompier="+ p.getId()+ "'>");
-                            out.println(p.getNom());
+                            out.println("<td><a href ='../ServletPompier/consulter?idPompier=" + p.getId() + "'>");
+                            if(p.getBip() == null){
+                                out.println("Non défini");
+                            } else out.println(p.getBip());
                             out.println("</td>");;
+                            
+                            out.println("<td>");
+                            out.println(p.getNom());
+                            out.println("</td>");
 
                             out.println("<td>");
                             out.println(p.getPrenom());

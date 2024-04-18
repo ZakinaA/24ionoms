@@ -27,8 +27,8 @@ public class DaoPompier {
         
         ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
         try{
-            requeteSql = cnx.prepareStatement("select pompier.id as p_id, pompier.nom as p_nom, pompier.prenom as p_prenom, c.id as c_id, c.nom as c_nom " +
-                         "from pompier " +
+            requeteSql = cnx.prepareStatement("select p.id as p_id, p.bip as p_bip, p.nom as p_nom, p.prenom as p_prenom, c.id as c_id, c.nom as c_nom " +
+                         "from pompier p " +
                          "inner join caserne c on pompier.caserne_id = c.id " +
                          "inner join grade g on pompier.grade_id = g.id");
             resultatRequete = requeteSql.executeQuery();
@@ -37,6 +37,7 @@ public class DaoPompier {
                 
                 Pompier p = new Pompier();
                     p.setId(resultatRequete.getInt("p_id"));
+                    p.setBip(resultatRequete.getString("p_bip"));
                     p.setNom(resultatRequete.getString("p_nom"));
                     p.setPrenom(resultatRequete.getString("p_prenom"));
                 Caserne c = new Caserne();
@@ -56,6 +57,10 @@ public class DaoPompier {
         return lesPompiers;
     }
     
+    public static ArrayList<Pompier> getLesPompiers(Connection cnx, Grade grade){
+        return getLesPompiers(cnx, grade.getId());
+    }
+    
     public static ArrayList<Pompier> getLesPompiers(Connection cnx, int gradeId){
         
         ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
@@ -64,7 +69,7 @@ public class DaoPompier {
                          "from pompier " +
                          "inner join caserne c on pompier.caserne_id = c.id " +
                          "inner join grade g on pompier.grade_id = g.id " +
-                         "where g_id = ?");
+                         "where g.id = ?");
             requeteSql.setInt(1, gradeId);
             resultatRequete = requeteSql.executeQuery();
             
@@ -91,35 +96,27 @@ public class DaoPompier {
         return lesPompiers;
     }
     
-    public static ArrayList<Pompier> getLesPompiers(Connection cnx, Grade grade){
-        return getLesPompiers(cnx, grade.getId());
-    }
-    
     public static Pompier getPompierById(Connection cnx, int idPompier){
         
         Pompier p = null ;
         try{
-            if(requeteSql == null) requeteSql = cnx.prepareStatement("select pompier.id as p_id, pompier.nom as p_nom, pompier.prenom as p_prenom, c.Cas_id as c_id, c.Cas_Nom as c_nom " +
-                         " from pompier inner join caserne c " +
-                         " on pompier.caserne_id = c.Cas_id "+
-                         " where pompier.id=1");
+            requeteSql = cnx.prepareStatement("select p.id as p_id, p.nom as p_nom, p.prenom as p_prenom, c.id as c_id, c.nom as c_nom " +
+                         " from pompier p inner join caserne c " +
+                         " on p.caserne_id = c.id "+
+                         " where p.id = ?");
             System.out.println(requeteSql);
             requeteSql.setInt(1, idPompier);
             resultatRequete = requeteSql.executeQuery();
             
             if (resultatRequete.next()){
-                
-                    p = new Pompier();
-                    p.setId(resultatRequete.getInt("p_id"));
-                    p.setNom(resultatRequete.getString("p_nom"));
-                    p.setPrenom(resultatRequete.getString("p_prenom"));
+                p = new Pompier();
+                p.setId(resultatRequete.getInt("p_id"));
+                p.setNom(resultatRequete.getString("p_nom"));
+                p.setPrenom(resultatRequete.getString("p_prenom"));
                 Caserne c = new Caserne();
-                    c.setId(resultatRequete.getInt("c_id"));
-                    c.setNom(resultatRequete.getString("c_nom"));
-                
+                c.setId(resultatRequete.getInt("c_id"));
+                c.setNom(resultatRequete.getString("c_nom"));
                 p.setUneCaserne(c);
-                
-                
             }
            
         }
@@ -127,7 +124,7 @@ public class DaoPompier {
             e.printStackTrace();
             System.out.println("La requête de getPompierById  a généré une erreur");
         }
-        return p ;
+        return p;
     }
     
     

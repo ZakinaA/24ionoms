@@ -15,33 +15,46 @@
     <body>
         <%
             Pompier p = (Pompier)request.getAttribute("pPompier");
+            if(p == null) out.println("Pompier est null");
         %>
-        <h1>Bienvenue <%  out.println(p.getPrenom());%>  <%  out.println(p.getNom());%></h1>
+        <h1>Bienvenue
+        <%
+            out.println(p.getPrenom());
+            out.println(p.getNom());
+        %>
+        </h1>
         <table>
-            <tr>
-               
-                 <%
-                          out.println("<tr>Numero Bip<td>");
-                            out.println(p.getBip());
-                            out.println("</a></td>");
-
-                            out.println("<td><a href ='../ServletPompier/consulter?idPompier="+ p.getId()+ "'>");
-                            out.println(p.getNom());
-                            out.println("</td>");;
-
-                            out.println("<td>");
-                            out.println(p.getPrenom());
-                            out.println("</td>");
-                           
-                            out.println("<td>");
-                            out.println(p.getUneCaserne().getNom());
-                            out.println("</td>");
-                               
-                        
-                    %>
+            <tr>             
+                    <th>id</th>
+                    <th>bip</th>
+                    <th>nom</th>
+                    <th>prenom</th>
+                    <th>caserne</th>
             </tr>
             <tr>
-                <td>Caserne : </td><td><%  out.println(p.getUneCaserne().getNom());%></td>
+                <%
+                    out.println("<td><b>");
+                    out.println(p.getId());
+                    out.println("</b></td>");
+                    
+                    out.println("<td>");
+                    if(p.getBip() == null){
+                        out.println("Non défini");
+                    } else out.println(p.getBip());
+                    out.println("</td>");
+                    
+                    out.println("<td>");
+                    out.println(p.getNom());
+                    out.println("</td>");;
+                    
+                    out.println("<td>");
+                    out.println(p.getPrenom());
+                    out.println("</td>");
+                    
+                    out.println("<td>");
+                    out.println(p.getUneCaserne().getNom());
+                    out.println("</td>");
+                %>
             </tr>
         </table>
     </body>
