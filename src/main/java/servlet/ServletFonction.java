@@ -4,11 +4,13 @@
  */
 package servlet;
 
+import static javax.swing.JOptionPane.showMessageDialog;
 import database.DaoFonction;
 import database.DaoVehicules;
 import database.DaoCaserne;
 import database.DaoPompier;
 import form.FormPompier;
+import form.FormFonction;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,8 +20,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Caserne;
 import model.Pompier;
+import model.Fonction;
 
 /**
  *
@@ -52,11 +56,51 @@ public class ServletFonction extends HttpServlet {
                 getServletContext().getRequestDispatcher("/vues/Fonction/listerFonction.jsp").forward(request, response);
                 break;
                 
+            case "ajouterfonction":
+                getServletContext().getRequestDispatcher("/vues/Fonction/ajouterFonction.jsp").forward(request, response);
+                break;
+                
             default:
                 System.out.println("Page web non trouvé : " + url);
                 throw new AssertionError();
         }
     }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+         FormFonction form = new FormFonction();
+		
+        /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+        Fonction f = form.ajouterFonction(request);
+        
+        /* Stockage du formulaire et de l'objet dans l'objet request */
+        request.setAttribute( "form", form );
+        request.setAttribute( "fFonction", f );
+		
+        if (form.getErreurs().isEmpty()){
+            Fonction FonctionInsere =  DaoFonction.addFonction(cnx, f);
+            if (FonctionInsere != null ){
+                request.setAttribute( "fFonction", FonctionInsere );
+                ArrayList lesFonctions = DaoFonction.listerFonctions(cnx);
+                System.out.println("NB FONCTIN="+ lesFonctions.size());
+                request.setAttribute("LesFonctions", lesFonctions);
+                this.getServletContext().getRequestDispatcher("/vues/Fonction/listerFonction.jsp" ).forward( request, response );
+            }
+            else 
+            {
+                // Cas oùl'insertion en bdd a échoué
+                //renvoyer vers une page d'erreur 
+            }
+           
+        }
+        else
+        { 
+            // il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
+            // ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
+            // request.setAttribute("pLesCasernes", lesCasernes);
+            // this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterPompier.jsp" ).forward( request, response );
+        }
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -67,20 +111,5 @@ public class ServletFonction extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletFonction</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletFonction at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 }

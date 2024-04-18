@@ -8,15 +8,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import model.Caserne;
-import model.Pompier;
+import model.Fonction;
 
 /**
  *
  * @author zakina
  */
-public class FormPompier {
+public class FormFonction {
     
-    private String resultat;
+     private String resultat;
     private Map<String, String> erreurs      = new HashMap<String, String>();
 
     public String getResultat() {
@@ -36,14 +36,14 @@ public class FormPompier {
     }
     
     //méthode de validation du champ de saisie nom
-    private void validationNom( String nom ) throws Exception {
-        if ( nom != null && nom.length() < 3 ) {
-        throw new Exception( "Le nom d'utilisateur doit contenir au moins 3 caractères." );
+    private void validationLibelle( String libelle ) throws Exception {
+        if ( libelle != null && libelle.length() < 3 ) {
+        throw new Exception( "Le libellé de la fonction doit contenir au moins 3 caractères." );
         }
     }
 
     private void setErreur( String champ, String message ) {
-    erreurs.put(champ, message );
+        erreurs.put(champ, message );
     }    
     
     private static String getDataForm( HttpServletRequest request, String nomChamp ) {
@@ -56,34 +56,25 @@ public class FormPompier {
     }
     
     
-    public Pompier ajouterPompier( HttpServletRequest request ) {
+    public Fonction ajouterFonction( HttpServletRequest request ) {
       
-        Pompier p  = new Pompier();
+        Fonction f  = new Fonction();
          
-        String nom = getDataForm( request, "nom" );
-        String prenom = getDataForm( request, "prenom");
-        int idPompier = Integer.parseInt((String)getDataForm( request, "idPompier" ));
-       
+        String libelle = getDataForm( request, "libelle" );
       
         try {
-             validationNom( nom );
+             validationLibelle(libelle);
         } catch ( Exception e ) {
-            setErreur( "nom", e.getMessage() );
+            setErreur( "libelle", e.getMessage() );
         }
-        p.setNom(nom);
+        f.setLibelle(libelle);
 
         if ( erreurs.isEmpty() ) {
             resultat = "Succès de l'ajout.";
         } else {
             resultat = "Échec de l'ajout.";
         }
-         
-      
-        p.setPrenom(prenom);
-
-        p.setUneCaserne(new Caserne(idPompier));
-        
-        return p ;
+        return f ;
     }
     
     
