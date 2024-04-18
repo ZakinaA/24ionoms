@@ -58,12 +58,6 @@ public class ServletCaserne extends HttpServlet {
                 getServletContext().getRequestDispatcher("/vues/caserne/consulterCaserne.jsp").forward(request, response);
                 break;
                 
-            case "ajouter":
-                Caserne addCaserne = DaoCaserne.addCaserne(cnx);
-                request.setAttribute("addCaserne", addCaserne);
-                this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterCaserne.jsp" ).forward( request, response );
-                break;
-                
             default:
                 System.out.println("Page web non trouvé : " + url);
                 throw new AssertionError();

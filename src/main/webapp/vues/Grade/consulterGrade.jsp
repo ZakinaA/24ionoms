@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Grade"%>
-<%@page import="model.SurGrade"%>
 <%@page import="model.Pompier"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
